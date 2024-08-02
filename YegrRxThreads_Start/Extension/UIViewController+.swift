@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 extension UIViewController {
     func showAlert(title: String, okText: String, completionHander: @escaping (() -> Void)) {
