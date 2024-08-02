@@ -8,7 +8,10 @@
 import UIKit
 
 final class NicknameViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .white
     }
 }
