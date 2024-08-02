@@ -11,11 +11,11 @@ import RxSwift
 import RxCocoa
 
 final class PhoneViewController: UIViewController, ViewRepresentable {
-    let phoneTextField = UITextField()
-    let nextButton = UIButton()
+    private let phoneTextField = UITextField()
+    private let nextButton = UIButton()
     
-    let initialNumberText = Observable.just("010")
-    let disposeBag = DisposeBag()
+    private let initialNumberText = Observable.just("010")
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,7 @@ final class PhoneViewController: UIViewController, ViewRepresentable {
         bind()
     }
     
-    func bind() {
+    private func bind() {
         nextButton.rx.tap
             .bind(with: self) { owner, _ in
                 owner.navigationController?.pushViewController(NicknameViewController(), animated: true)

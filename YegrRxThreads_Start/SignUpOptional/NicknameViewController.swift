@@ -11,10 +11,10 @@ import RxSwift
 import RxCocoa
 
 final class NicknameViewController: UIViewController, ViewRepresentable {
-    let nicknameTextField = UITextField()
-    let nextButton = UIButton()
+    private let nicknameTextField = UITextField()
+    private let nextButton = UIButton()
     
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +25,7 @@ final class NicknameViewController: UIViewController, ViewRepresentable {
         bind()
     }
     
-    func bind() {
+    private func bind() {
         nextButton.rx.tap
             .bind(with: self) { owner, _ in
                 owner.navigationController?.pushViewController(BirthdayViewController(), animated: true)
