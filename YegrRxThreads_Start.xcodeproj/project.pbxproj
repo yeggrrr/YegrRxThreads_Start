@@ -22,6 +22,9 @@
 		688A2D742C5CA44700B88198 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D732C5CA44700B88198 /* SignUpViewController.swift */; };
 		688A2D762C5CAB2100B88198 /* ReusableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D752C5CAB2100B88198 /* ReusableProtocol.swift */; };
 		688A2D782C5CB05000B88198 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D772C5CB05000B88198 /* PasswordViewController.swift */; };
+		688A2D7B2C5CB3C400B88198 /* PhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D7A2C5CB3C400B88198 /* PhoneViewController.swift */; };
+		688A2D7D2C5CB3CE00B88198 /* NicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D7C2C5CB3CE00B88198 /* NicknameViewController.swift */; };
+		688A2D7F2C5CB3DD00B88198 /* BirthdayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D7E2C5CB3DD00B88198 /* BirthdayViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +42,9 @@
 		688A2D732C5CA44700B88198 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		688A2D752C5CAB2100B88198 /* ReusableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProtocol.swift; sourceTree = "<group>"; };
 		688A2D772C5CB05000B88198 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
+		688A2D7A2C5CB3C400B88198 /* PhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneViewController.swift; sourceTree = "<group>"; };
+		688A2D7C2C5CB3CE00B88198 /* NicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
+		688A2D7E2C5CB3DD00B88198 /* BirthdayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +88,7 @@
 				688A2D682C5CA19C00B88198 /* Extension */,
 				688A2D672C5CA04C00B88198 /* SignIn */,
 				688A2D722C5CA42E00B88198 /* SignUp */,
+				688A2D792C5CB3A500B88198 /* SignUpOptional */,
 				688A2D592C5BD94800B88198 /* Info.plist */,
 			);
 			path = YegrRxThreads_Start;
@@ -121,6 +128,16 @@
 				688A2D772C5CB05000B88198 /* PasswordViewController.swift */,
 			);
 			path = SignUp;
+			sourceTree = "<group>";
+		};
+		688A2D792C5CB3A500B88198 /* SignUpOptional */ = {
+			isa = PBXGroup;
+			children = (
+				688A2D7A2C5CB3C400B88198 /* PhoneViewController.swift */,
+				688A2D7C2C5CB3CE00B88198 /* NicknameViewController.swift */,
+				688A2D7E2C5CB3DD00B88198 /* BirthdayViewController.swift */,
+			);
+			path = SignUpOptional;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,11 +222,14 @@
 				688A2D502C5BD94700B88198 /* SignInViewController.swift in Sources */,
 				688A2D782C5CB05000B88198 /* PasswordViewController.swift in Sources */,
 				688A2D712C5CA38000B88198 /* UIButton+.swift in Sources */,
+				688A2D7F2C5CB3DD00B88198 /* BirthdayViewController.swift in Sources */,
 				688A2D742C5CA44700B88198 /* SignUpViewController.swift in Sources */,
+				688A2D7D2C5CB3CE00B88198 /* NicknameViewController.swift in Sources */,
 				688A2D6D2C5CA20D00B88198 /* UITextField+.swift in Sources */,
 				688A2D6B2C5CA1E400B88198 /* ViewRepresentable.swift in Sources */,
 				688A2D4C2C5BD94700B88198 /* AppDelegate.swift in Sources */,
 				688A2D6F2C5CA2EC00B88198 /* View+.swift in Sources */,
+				688A2D7B2C5CB3C400B88198 /* PhoneViewController.swift in Sources */,
 				688A2D4E2C5BD94700B88198 /* SceneDelegate.swift in Sources */,
 				688A2D762C5CAB2100B88198 /* ReusableProtocol.swift in Sources */,
 			);

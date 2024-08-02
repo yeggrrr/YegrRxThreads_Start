@@ -79,13 +79,12 @@ final class SignUpViewController: UIViewController, ViewRepresentable {
     }
     
     func addSubviews() {
-        view.addSubview(emailTextField)
-        view.addSubview(validationButton)
-        view.addSubview(nextButton)
+        view.addSubviews([emailTextField, validationButton, nextButton])
     }
     
     func setConstraints() {
         let safeArea = view.safeAreaLayoutGuide
+        
         validationButton.snp.makeConstraints {
             $0.height.equalTo(50)
             $0.top.equalTo(safeArea).offset(200)
