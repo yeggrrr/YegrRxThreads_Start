@@ -9,22 +9,32 @@
 /* Begin PBXBuildFile section */
 		688A2D4C2C5BD94700B88198 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D4B2C5BD94700B88198 /* AppDelegate.swift */; };
 		688A2D4E2C5BD94700B88198 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D4D2C5BD94700B88198 /* SceneDelegate.swift */; };
-		688A2D502C5BD94700B88198 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D4F2C5BD94700B88198 /* ViewController.swift */; };
+		688A2D502C5BD94700B88198 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D4F2C5BD94700B88198 /* SignInViewController.swift */; };
 		688A2D552C5BD94800B88198 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 688A2D542C5BD94800B88198 /* Assets.xcassets */; };
 		688A2D582C5BD94800B88198 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 688A2D572C5BD94800B88198 /* Base */; };
 		688A2D612C5BD9B500B88198 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 688A2D602C5BD9B500B88198 /* RxCocoa */; };
 		688A2D632C5BD9B500B88198 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 688A2D622C5BD9B500B88198 /* RxSwift */; };
 		688A2D662C5BD9C100B88198 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 688A2D652C5BD9C100B88198 /* SnapKit */; };
+		688A2D6B2C5CA1E400B88198 /* ViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D6A2C5CA1E400B88198 /* ViewRepresentable.swift */; };
+		688A2D6D2C5CA20D00B88198 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D6C2C5CA20D00B88198 /* UITextField+.swift */; };
+		688A2D6F2C5CA2EC00B88198 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D6E2C5CA2EC00B88198 /* View+.swift */; };
+		688A2D712C5CA38000B88198 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D702C5CA38000B88198 /* UIButton+.swift */; };
+		688A2D742C5CA44700B88198 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D732C5CA44700B88198 /* SignUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		688A2D482C5BD94700B88198 /* YegrRxThreads_Start.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YegrRxThreads_Start.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		688A2D4B2C5BD94700B88198 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		688A2D4D2C5BD94700B88198 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		688A2D4F2C5BD94700B88198 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		688A2D4F2C5BD94700B88198 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		688A2D542C5BD94800B88198 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		688A2D572C5BD94800B88198 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		688A2D592C5BD94800B88198 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		688A2D6A2C5CA1E400B88198 /* ViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRepresentable.swift; sourceTree = "<group>"; };
+		688A2D6C2C5CA20D00B88198 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
+		688A2D6E2C5CA2EC00B88198 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
+		688A2D702C5CA38000B88198 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
+		688A2D732C5CA44700B88198 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,12 +72,49 @@
 			children = (
 				688A2D4B2C5BD94700B88198 /* AppDelegate.swift */,
 				688A2D4D2C5BD94700B88198 /* SceneDelegate.swift */,
-				688A2D4F2C5BD94700B88198 /* ViewController.swift */,
 				688A2D542C5BD94800B88198 /* Assets.xcassets */,
 				688A2D562C5BD94800B88198 /* LaunchScreen.storyboard */,
+				688A2D692C5CA1D300B88198 /* Protocol */,
+				688A2D682C5CA19C00B88198 /* Extension */,
+				688A2D672C5CA04C00B88198 /* SignIn */,
+				688A2D722C5CA42E00B88198 /* SignUp */,
 				688A2D592C5BD94800B88198 /* Info.plist */,
 			);
 			path = YegrRxThreads_Start;
+			sourceTree = "<group>";
+		};
+		688A2D672C5CA04C00B88198 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				688A2D4F2C5BD94700B88198 /* SignInViewController.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		688A2D682C5CA19C00B88198 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				688A2D6C2C5CA20D00B88198 /* UITextField+.swift */,
+				688A2D6E2C5CA2EC00B88198 /* View+.swift */,
+				688A2D702C5CA38000B88198 /* UIButton+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		688A2D692C5CA1D300B88198 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				688A2D6A2C5CA1E400B88198 /* ViewRepresentable.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		688A2D722C5CA42E00B88198 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				688A2D732C5CA44700B88198 /* SignUpViewController.swift */,
+			);
+			path = SignUp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,8 +196,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				688A2D502C5BD94700B88198 /* ViewController.swift in Sources */,
+				688A2D502C5BD94700B88198 /* SignInViewController.swift in Sources */,
+				688A2D712C5CA38000B88198 /* UIButton+.swift in Sources */,
+				688A2D742C5CA44700B88198 /* SignUpViewController.swift in Sources */,
+				688A2D6D2C5CA20D00B88198 /* UITextField+.swift in Sources */,
+				688A2D6B2C5CA1E400B88198 /* ViewRepresentable.swift in Sources */,
 				688A2D4C2C5BD94700B88198 /* AppDelegate.swift in Sources */,
+				688A2D6F2C5CA2EC00B88198 /* View+.swift in Sources */,
 				688A2D4E2C5BD94700B88198 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
