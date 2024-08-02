@@ -20,6 +20,8 @@
 		688A2D6F2C5CA2EC00B88198 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D6E2C5CA2EC00B88198 /* View+.swift */; };
 		688A2D712C5CA38000B88198 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D702C5CA38000B88198 /* UIButton+.swift */; };
 		688A2D742C5CA44700B88198 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D732C5CA44700B88198 /* SignUpViewController.swift */; };
+		688A2D762C5CAB2100B88198 /* ReusableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D752C5CAB2100B88198 /* ReusableProtocol.swift */; };
+		688A2D782C5CB05000B88198 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D772C5CB05000B88198 /* PasswordViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		688A2D6E2C5CA2EC00B88198 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		688A2D702C5CA38000B88198 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 		688A2D732C5CA44700B88198 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		688A2D752C5CAB2100B88198 /* ReusableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProtocol.swift; sourceTree = "<group>"; };
+		688A2D772C5CB05000B88198 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				688A2D6A2C5CA1E400B88198 /* ViewRepresentable.swift */,
+				688A2D752C5CAB2100B88198 /* ReusableProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -113,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				688A2D732C5CA44700B88198 /* SignUpViewController.swift */,
+				688A2D772C5CB05000B88198 /* PasswordViewController.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -197,6 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				688A2D502C5BD94700B88198 /* SignInViewController.swift in Sources */,
+				688A2D782C5CB05000B88198 /* PasswordViewController.swift in Sources */,
 				688A2D712C5CA38000B88198 /* UIButton+.swift in Sources */,
 				688A2D742C5CA44700B88198 /* SignUpViewController.swift in Sources */,
 				688A2D6D2C5CA20D00B88198 /* UITextField+.swift in Sources */,
@@ -204,6 +211,7 @@
 				688A2D4C2C5BD94700B88198 /* AppDelegate.swift in Sources */,
 				688A2D6F2C5CA2EC00B88198 /* View+.swift in Sources */,
 				688A2D4E2C5BD94700B88198 /* SceneDelegate.swift in Sources */,
+				688A2D762C5CAB2100B88198 /* ReusableProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
