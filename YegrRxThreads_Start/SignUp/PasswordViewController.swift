@@ -43,6 +43,12 @@ final class PasswordViewController: UIViewController, ViewRepresentable {
         validation.bind(to: nextButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
+        validation.bind(with: self) { owner, value in
+            let color: UIColor = value ? .systemPink : .systemGray
+            owner.nextButton.backgroundColor = color
+        }
+        .disposed(by: disposeBag)
+        
         nextButton.rx.tap
             .bind(with: self) { owner, _ in
                 owner.navigationController?.pushViewController(PhoneViewController(), animated: true)
