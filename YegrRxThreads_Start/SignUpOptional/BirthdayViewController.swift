@@ -39,12 +39,6 @@ final class BirthdayViewController: UIViewController, ViewRepresentable {
     }
     
     func bind() {
-        nextButton.rx.tap
-            .bind(with: self) { owner, _ in
-                owner.navigationController?.pushViewController(SearchViewController(), animated: true)
-            }
-            .disposed(by: disposeBag)
-        
         birthDayPicker.rx.date.bind(with: self) { owner, date in
             let component = Calendar.current.dateComponents([.day, .month, .year], from: date)
             owner.year.accept(component.year ?? 0)
@@ -67,6 +61,51 @@ final class BirthdayViewController: UIViewController, ViewRepresentable {
         
         validAgeText.bind(to: infoLabel.rx.text)
             .disposed(by: disposeBag)
+        
+        year.bind { year in
+            self.changeText(year: year, month: self.month.value, day: self.day.value)
+        }
+        .disposed(by: disposeBag)
+        
+        month.bind { month in
+            self.changeText(year: self.year.value, month: month, day: self.day.value)
+        }
+        .disposed(by: disposeBag)
+
+        day.bind { day in
+            self.changeText(year: self.year.value, month: self.month.value, day: day)
+        }
+        .disposed(by: disposeBag)
+        
+        nextButton.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.showAlert(title: "가입이 완료되었습니다!", okText: "확인") {
+                    owner.navigationController?.pushViewController(SearchViewController(), animated: true)
+                }
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    func changeText(year: Int, month: Int, day: Int) {
+        if getDifferenceDays(year: year, month: month, day: day) {
+            infoLabel.rx.text
+                .onNext("가입이 가능한 나이입니다")
+            infoLabel.rx.textColor
+                .onNext(.systemBlue)
+            nextButton.rx.backgroundColor
+                .onNext(.systemBlue)
+            nextButton.rx.isEnabled
+                .onNext(true)
+        } else {
+            infoLabel.rx.text
+                .onNext("만 17세 이상만 가입이 가능합니다")
+            infoLabel.rx.textColor
+                .onNext(.systemRed)
+            nextButton.rx.backgroundColor
+                .onNext(.lightGray)
+            nextButton.rx.isEnabled
+                .onNext(false)
+        }
     }
     
     func addSubviews() {

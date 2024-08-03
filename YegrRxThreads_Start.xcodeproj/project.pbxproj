@@ -28,7 +28,7 @@
 		688A2D822C5CC60600B88198 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D812C5CC60600B88198 /* SearchViewController.swift */; };
 		688A2D842C5CC6CC00B88198 /* UIDatePicker+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D832C5CC6CC00B88198 /* UIDatePicker+.swift */; };
 		688A2D872C5CC76C00B88198 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D862C5CC76C00B88198 /* UIStackView+.swift */; };
-		688A2D892C5CC8C900B88198 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D882C5CC8C900B88198 /* UILabel+.swift */; };
+		688A2D8B2C5CD4FC00B88198 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D8A2C5CD4FC00B88198 /* UIViewController+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,7 +52,7 @@
 		688A2D812C5CC60600B88198 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		688A2D832C5CC6CC00B88198 /* UIDatePicker+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDatePicker+.swift"; sourceTree = "<group>"; };
 		688A2D862C5CC76C00B88198 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
-		688A2D882C5CC8C900B88198 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
+		688A2D8A2C5CD4FC00B88198 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +119,7 @@
 				688A2D702C5CA38000B88198 /* UIButton+.swift */,
 				688A2D832C5CC6CC00B88198 /* UIDatePicker+.swift */,
 				688A2D862C5CC76C00B88198 /* UIStackView+.swift */,
-				688A2D882C5CC8C900B88198 /* UILabel+.swift */,
+				688A2D8A2C5CD4FC00B88198 /* UIViewController+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -245,7 +245,7 @@
 				688A2D7F2C5CB3DD00B88198 /* BirthdayViewController.swift in Sources */,
 				688A2D842C5CC6CC00B88198 /* UIDatePicker+.swift in Sources */,
 				688A2D742C5CA44700B88198 /* SignUpViewController.swift in Sources */,
-				688A2D892C5CC8C900B88198 /* UILabel+.swift in Sources */,
+				688A2D8B2C5CD4FC00B88198 /* UIViewController+.swift in Sources */,
 				688A2D7D2C5CB3CE00B88198 /* NicknameViewController.swift in Sources */,
 				688A2D6D2C5CA20D00B88198 /* UITextField+.swift in Sources */,
 				688A2D6B2C5CA1E400B88198 /* ViewRepresentable.swift in Sources */,
