@@ -6,14 +6,55 @@
 //
 
 import UIKit
+import SnapKit
 
-class TodoListCell: UITableViewCell {
+class TodoListCell: UITableViewCell, ViewRepresentable {
+    let checkButton = UIButton(type: .system)
+    let titleLabel = UILabel()
+    let starButton = UIButton(type: .system)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        addSubviews()
+        setConstraints()
+        configureUI()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    
+    func addSubviews() {
+        contentView.addSubviews([checkButton, titleLabel, starButton])
+    }
+    
+    func setConstraints() {
+        let safeArea = contentView.safeAreaLayoutGuide
+        
+        checkButton.snp.makeConstraints {
+            $0.leading.equalTo(safeArea).offset(10)
+            $0.verticalEdges.equalTo(safeArea).inset(10)
+            $0.width.equalTo(checkButton.snp.height)
+        }
+        
+        titleLabel.snp.makeConstraints {
+            $0.leading.equalTo(checkButton.snp.trailing).offset(20)
+            $0.verticalEdges.equalTo(safeArea).inset(10)
+            $0.trailing.equalTo(starButton.snp.leading).offset(-20)
+        }
+        
+        starButton.snp.makeConstraints {
+            $0.trailing.verticalEdges.equalTo(safeArea).inset(10)
+            $0.width.equalTo(starButton.snp.height)
+        }
+    }
+    
+    func configureUI() {
+        checkButton.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
+        checkButton.setImage(UIImage(systemName: "checkmark.square.fill"), for: .selected)
+        checkButton.tintColor = .black
+        
+        starButton.setImage(UIImage(systemName: "star"), for: .normal)
+        starButton.setImage(UIImage(systemName: "star.fill"), for: .selected)
+        starButton.tintColor = .systemRed
     }
 }
