@@ -22,6 +22,10 @@ final class TodoListViewController: UIViewController {
     
     // MARK: Properties
     let sectionList: [SectionType] = [.textField, .items]
+    let todoList: [TodoModel] = [
+        TodoModel(check: false, title: "임시값", star: false),
+        TodoModel(check: true, title: "임시값2", star: true)
+    ]
     let disposeBag = DisposeBag()
 
     // MARK: View Life Cycle
@@ -67,7 +71,7 @@ extension TodoListViewController: UITableViewDataSource {
         case .textField:
             return 1
         case .items:
-            return 10 // 임시
+            return todoList.count // 임시
         }
     }
     
@@ -84,6 +88,10 @@ extension TodoListViewController: UITableViewDataSource {
             return cell
         case .items:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoListCell.id, for: indexPath) as? TodoListCell else { return UITableViewCell() }
+            let item = todoList[indexPath.row]
+            cell.checkButton.isSelected = item.check
+            cell.titleLabel.text = item.title
+            cell.starButton.isSelected = item.star
             return cell
         }
     }

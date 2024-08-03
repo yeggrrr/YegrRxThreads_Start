@@ -49,12 +49,16 @@ class TodoListCell: UITableViewCell, ViewRepresentable {
     }
     
     func configureUI() {
-        checkButton.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
-        checkButton.setImage(UIImage(systemName: "checkmark.square.fill"), for: .selected)
-        checkButton.tintColor = .black
+        checkButton.setImage(
+            UIImage(systemName: "checkmark.square")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal), for: .normal)
+        checkButton.setImage(
+            UIImage(systemName: "checkmark.square.fill")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal), for: .selected)
+        checkButton.setBackgroundColor(color: .white, forState: .selected)
         
-        starButton.setImage(UIImage(systemName: "star"), for: .normal)
-        starButton.setImage(UIImage(systemName: "star.fill"), for: .selected)
-        starButton.tintColor = .systemRed
+        starButton.setImage(
+            UIImage(systemName: "star")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal), for: .normal)
+        starButton.setImage(
+            UIImage(systemName: "star.fill")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal), for: .selected)
+        starButton.setBackgroundColor(color: .white, forState: .selected)
     }
 }

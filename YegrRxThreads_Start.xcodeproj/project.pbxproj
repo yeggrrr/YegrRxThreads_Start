@@ -31,6 +31,7 @@
 		688A2D8B2C5CD4FC00B88198 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D8A2C5CD4FC00B88198 /* UIViewController+.swift */; };
 		688A2D8E2C5E67D000B88198 /* TodoTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D8D2C5E67D000B88198 /* TodoTextFieldCell.swift */; };
 		688A2D902C5E67DC00B88198 /* TodoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D8F2C5E67DC00B88198 /* TodoListCell.swift */; };
+		688A2D932C5E768100B88198 /* TodoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D922C5E768100B88198 /* TodoModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		688A2D8A2C5CD4FC00B88198 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		688A2D8D2C5E67D000B88198 /* TodoTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTextFieldCell.swift; sourceTree = "<group>"; };
 		688A2D8F2C5E67DC00B88198 /* TodoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListCell.swift; sourceTree = "<group>"; };
+		688A2D922C5E768100B88198 /* TodoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				688A2D812C5CC60600B88198 /* TodoListViewController.swift */,
+				688A2D912C5E766100B88198 /* Model */,
 				688A2D8C2C5E67B500B88198 /* Cell */,
 			);
 			path = Todo;
@@ -172,6 +175,14 @@
 				688A2D8F2C5E67DC00B88198 /* TodoListCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		688A2D912C5E766100B88198 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				688A2D922C5E768100B88198 /* TodoModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +277,7 @@
 				688A2D6D2C5CA20D00B88198 /* UITextField+.swift in Sources */,
 				688A2D6B2C5CA1E400B88198 /* ViewRepresentable.swift in Sources */,
 				688A2D822C5CC60600B88198 /* TodoListViewController.swift in Sources */,
+				688A2D932C5E768100B88198 /* TodoModel.swift in Sources */,
 				688A2D4C2C5BD94700B88198 /* AppDelegate.swift in Sources */,
 				688A2D872C5CC76C00B88198 /* UIStackView+.swift in Sources */,
 				688A2D6F2C5CA2EC00B88198 /* View+.swift in Sources */,
