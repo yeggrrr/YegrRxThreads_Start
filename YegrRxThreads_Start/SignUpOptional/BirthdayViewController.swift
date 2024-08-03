@@ -146,6 +146,9 @@ final class BirthdayViewController: UIViewController, ViewRepresentable {
     
     func configureUI() {
         view.backgroundColor = .white
+        // navigaion
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        navigationItem.backBarButtonItem?.tintColor = .black
         
         // birthDayPicker
         birthDayPicker.setUI()
