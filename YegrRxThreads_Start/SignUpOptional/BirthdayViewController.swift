@@ -80,7 +80,7 @@ final class BirthdayViewController: UIViewController, ViewRepresentable {
         nextButton.rx.tap
             .bind(with: self) { owner, _ in
                 owner.showAlert(title: "가입이 완료되었습니다!", okText: "확인") {
-                    owner.navigationController?.pushViewController(SearchViewController(), animated: true)
+                    owner.navigationController?.pushViewController(TodoListViewController(), animated: true)
                 }
             }
             .disposed(by: disposeBag)
