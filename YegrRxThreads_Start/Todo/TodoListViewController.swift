@@ -22,7 +22,9 @@ final class TodoListViewController: UIViewController {
     
     // MARK: Properties
     let sectionList: [SectionType] = [.textField, .items]
+    let disposeBag = DisposeBag()
 
+    // MARK: View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,6 +32,7 @@ final class TodoListViewController: UIViewController {
         configureUI()
     }
     
+    // MARK: Functions
     func configureTableView() {
         view.addSubview(tableView)
         tableView.snp.makeConstraints {
@@ -38,21 +41,21 @@ final class TodoListViewController: UIViewController {
         
         tableView.register(TodoTextFieldCell.self, forCellReuseIdentifier: TodoTextFieldCell.id)
         tableView.register(TodoListCell.self, forCellReuseIdentifier: TodoListCell.id)
-        
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.backgroundColor = .systemGray6
     }
     
     func configureUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemGray6
         navigationItem.title = "쇼핑"
-        tableView.backgroundColor = .systemGray
     }
 }
 
+// MARK: UITableViewDataSource
 extension TodoListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 55
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -72,6 +75,12 @@ extension TodoListViewController: UITableViewDataSource {
         switch sectionList[indexPath.section] {
         case .textField:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoTextFieldCell.id, for: indexPath) as? TodoTextFieldCell else { return UITableViewCell() }
+            cell.addButton.rx.tap
+                .bind(with: self) { owner, _ in
+                    print("추가 버튼 클릭됨")
+                }
+                .disposed(by: disposeBag)
+            
             return cell
         case .items:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoListCell.id, for: indexPath) as? TodoListCell else { return UITableViewCell() }
@@ -80,4 +89,5 @@ extension TodoListViewController: UITableViewDataSource {
     }
 }
 
+// MARK: UITableViewDelegate
 extension TodoListViewController: UITableViewDelegate { }
