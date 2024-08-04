@@ -30,7 +30,6 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
         TodoModel(check: false, title: "임시값1", star: false),
         TodoModel(check: false, title: "임시값2", star: false)
     ]
-    
     lazy var todoList = BehaviorSubject(value: todo)
     
     let disposeBag = DisposeBag()
@@ -156,7 +155,9 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
         
         button.rx.tap
             .bind(with: self) { owner, _ in
-                owner.navigationController?.pushViewController(SearchViewController(), animated: true)
+                let vc = SearchViewController()
+                vc.todo = self.todo
+                owner.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: disposeBag)
         return UIBarButtonItem(customView: button)

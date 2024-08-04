@@ -32,6 +32,7 @@
 		688A2D902C5E67DC00B88198 /* TodoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D8F2C5E67DC00B88198 /* TodoListCell.swift */; };
 		688A2D932C5E768100B88198 /* TodoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D922C5E768100B88198 /* TodoModel.swift */; };
 		688A2D952C5F418D00B88198 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D942C5F418D00B88198 /* SearchViewController.swift */; };
+		688A2D9A2C5F94BF00B88198 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D992C5F94BF00B88198 /* SearchCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		688A2D8F2C5E67DC00B88198 /* TodoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListCell.swift; sourceTree = "<group>"; };
 		688A2D922C5E768100B88198 /* TodoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModel.swift; sourceTree = "<group>"; };
 		688A2D942C5F418D00B88198 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		688A2D992C5F94BF00B88198 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +106,7 @@
 				688A2D722C5CA42E00B88198 /* SignUp */,
 				688A2D792C5CB3A500B88198 /* SignUpOptional */,
 				688A2D802C5CC5F400B88198 /* Todo */,
-				688A2D962C5F46DF00B88198 /* Detail */,
+				688A2D962C5F46DF00B88198 /* Search */,
 				688A2D592C5BD94800B88198 /* Info.plist */,
 			);
 			path = YegrRxThreads_Start;
@@ -169,12 +171,13 @@
 			path = Todo;
 			sourceTree = "<group>";
 		};
-		688A2D962C5F46DF00B88198 /* Detail */ = {
+		688A2D962C5F46DF00B88198 /* Search */ = {
 			isa = PBXGroup;
 			children = (
 				688A2D942C5F418D00B88198 /* SearchViewController.swift */,
+				688A2D992C5F94BF00B88198 /* SearchCell.swift */,
 			);
-			path = Detail;
+			path = Search;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +269,7 @@
 				688A2D742C5CA44700B88198 /* SignUpViewController.swift in Sources */,
 				688A2D8B2C5CD4FC00B88198 /* UIViewController+.swift in Sources */,
 				688A2D7D2C5CB3CE00B88198 /* NicknameViewController.swift in Sources */,
+				688A2D9A2C5F94BF00B88198 /* SearchCell.swift in Sources */,
 				688A2D6D2C5CA20D00B88198 /* UITextField+.swift in Sources */,
 				688A2D6B2C5CA1E400B88198 /* ViewRepresentable.swift in Sources */,
 				688A2D822C5CC60600B88198 /* TodoListViewController.swift in Sources */,
