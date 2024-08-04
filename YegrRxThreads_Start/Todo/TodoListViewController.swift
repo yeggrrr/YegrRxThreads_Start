@@ -27,8 +27,8 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
     // MARK: Properties
     let sectionList: [SectionType] = [.textField, .items]
     var todo: [TodoModel] = [
-        TodoModel(check: false, title: "임시값", star: false),
-        TodoModel(check: true, title: "임시값2", star: true)
+        TodoModel(check: false, title: "임시값1", star: false),
+        TodoModel(check: false, title: "임시값2", star: false)
     ]
     
     lazy var todoList = BehaviorSubject(value: todo)
@@ -94,25 +94,12 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
         textField.placeholder = "구매하실 품목을 입력해주세요."
     }
     
-    func rightBarButtonItem() -> UIBarButtonItem {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
-        button.tintColor = .black
-        
-        button.rx.tap
-            .bind(with: self) { owner, _ in
-                owner.navigationController?.pushViewController(SearchViewController(), animated: true)
-            }
-            .disposed(by: disposeBag)
-        return UIBarButtonItem(customView: button)
-    }
-    
     func bind() {
         navigationItem.rightBarButtonItem?.target = self
         
-        
         todoList
             .bind(to: tableView.rx.items(cellIdentifier: TodoListCell.id, cellType: TodoListCell.self)) { (row, element, cell) in
+                cell.selectionStyle = .none
                 cell.titleLabel.text = element.title
                 cell.checkButton.isSelected = element.check
                 cell.starButton.isSelected = element.star
@@ -131,7 +118,7 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
         
         tableView.rx.itemSelected
             .bind(with: self) { owner, indexPath in
-                //
+                self.editAction(row: indexPath.row)
             }
             .disposed(by: disposeBag)
         
@@ -149,7 +136,47 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
             .bind(with: self) { owner, value in
                 owner.todo.insert(TodoModel(check: false, title: value, star: false), at: 0)
                 owner.todoList.onNext(owner.todo)
+                owner.textField.text = ""
             }
             .disposed(by: disposeBag)
+    }
+    
+    func rightBarButtonItem() -> UIBarButtonItem {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+        button.tintColor = .black
+        
+        button.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.navigationController?.pushViewController(SearchViewController(), animated: true)
+            }
+            .disposed(by: disposeBag)
+        return UIBarButtonItem(customView: button)
+    }
+    
+    func editAction(row: Int) {
+        let oldTodo = todo[row]
+        
+        let alert = UIAlertController(title: "리스트 수정하기", message: "내용을 입력하세요.", preferredStyle: .alert)
+        let cancelButton = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        let editButton = UIAlertAction(title: "수정", style: .default) { alertAction in
+            guard
+                let firstTextField = alert.textFields?[0],
+                let newTitle = firstTextField.text
+            else { return }
+            
+            let newTodo = TodoModel(check: false, title: newTitle, star: false)
+            self.todo[row] = newTodo
+            self.todoList.onNext(self.todo)
+        }
+        
+        alert.addAction(cancelButton)
+        alert.addAction(editButton)
+        alert.addTextField { textField in
+            textField.placeholder = "입력해주세요."
+            textField.text = oldTodo.title
+        }
+        
+        self.present(alert, animated: true)
     }
 }
