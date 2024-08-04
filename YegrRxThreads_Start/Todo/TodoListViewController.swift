@@ -112,6 +112,13 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
             }
             .disposed(by: disposeBag)
         
+        tableView.rx.itemDeleted
+            .bind(with: self) { owner, indexPath in
+                owner.todo.remove(at: indexPath.row)
+                owner.todoList.onNext(owner.todo)
+            }
+            .disposed(by: disposeBag)
+        
         addButton.rx.tap
             .withLatestFrom(textField.rx.text.orEmpty) { void, text in
                 return text
