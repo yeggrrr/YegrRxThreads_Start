@@ -29,9 +29,9 @@
 		688A2D842C5CC6CC00B88198 /* UIDatePicker+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D832C5CC6CC00B88198 /* UIDatePicker+.swift */; };
 		688A2D872C5CC76C00B88198 /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D862C5CC76C00B88198 /* UIStackView+.swift */; };
 		688A2D8B2C5CD4FC00B88198 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D8A2C5CD4FC00B88198 /* UIViewController+.swift */; };
-		688A2D8E2C5E67D000B88198 /* TodoTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D8D2C5E67D000B88198 /* TodoTextFieldCell.swift */; };
 		688A2D902C5E67DC00B88198 /* TodoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D8F2C5E67DC00B88198 /* TodoListCell.swift */; };
 		688A2D932C5E768100B88198 /* TodoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D922C5E768100B88198 /* TodoModel.swift */; };
+		688A2D952C5F418D00B88198 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2D942C5F418D00B88198 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,9 +56,9 @@
 		688A2D832C5CC6CC00B88198 /* UIDatePicker+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDatePicker+.swift"; sourceTree = "<group>"; };
 		688A2D862C5CC76C00B88198 /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
 		688A2D8A2C5CD4FC00B88198 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
-		688A2D8D2C5E67D000B88198 /* TodoTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTextFieldCell.swift; sourceTree = "<group>"; };
 		688A2D8F2C5E67DC00B88198 /* TodoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListCell.swift; sourceTree = "<group>"; };
 		688A2D922C5E768100B88198 /* TodoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModel.swift; sourceTree = "<group>"; };
+		688A2D942C5F418D00B88198 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				688A2D812C5CC60600B88198 /* TodoListViewController.swift */,
+				688A2D942C5F418D00B88198 /* DetailViewController.swift */,
 				688A2D912C5E766100B88198 /* Model */,
 				688A2D8C2C5E67B500B88198 /* Cell */,
 			);
@@ -171,7 +172,6 @@
 		688A2D8C2C5E67B500B88198 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				688A2D8D2C5E67D000B88198 /* TodoTextFieldCell.swift */,
 				688A2D8F2C5E67DC00B88198 /* TodoListCell.swift */,
 			);
 			path = Cell;
@@ -267,9 +267,9 @@
 				688A2D502C5BD94700B88198 /* SignInViewController.swift in Sources */,
 				688A2D782C5CB05000B88198 /* PasswordViewController.swift in Sources */,
 				688A2D712C5CA38000B88198 /* UIButton+.swift in Sources */,
-				688A2D8E2C5E67D000B88198 /* TodoTextFieldCell.swift in Sources */,
 				688A2D902C5E67DC00B88198 /* TodoListCell.swift in Sources */,
 				688A2D7F2C5CB3DD00B88198 /* BirthdayViewController.swift in Sources */,
+				688A2D952C5F418D00B88198 /* DetailViewController.swift in Sources */,
 				688A2D842C5CC6CC00B88198 /* UIDatePicker+.swift in Sources */,
 				688A2D742C5CA44700B88198 /* SignUpViewController.swift in Sources */,
 				688A2D8B2C5CD4FC00B88198 /* UIViewController+.swift in Sources */,

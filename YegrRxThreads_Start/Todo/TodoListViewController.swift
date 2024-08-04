@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-final class TodoListViewController: UIViewController {
+final class TodoListViewController: UIViewController, ViewRepresentable {
     // MARK: Enum
     enum SectionType {
         case textField
@@ -18,84 +18,98 @@ final class TodoListViewController: UIViewController {
     }
     
     // MARK: UI
+    let topView = UIView()
+    let horizontalStackView = UIStackView()
+    let textField = UITextField()
+    let addButton = UIButton()
     let tableView = UITableView(frame: .zero, style: .insetGrouped)
     
     // MARK: Properties
     let sectionList: [SectionType] = [.textField, .items]
-    let todoList: [TodoModel] = [
+    var todo: [TodoModel] = [
         TodoModel(check: false, title: "임시값", star: false),
         TodoModel(check: true, title: "임시값2", star: true)
     ]
+    
+    lazy var todoList = BehaviorSubject(value: todo)
+    
     let disposeBag = DisposeBag()
 
     // MARK: View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureTableView()
+        addSubviews()
+        setConstraints()
         configureUI()
+        bind()
     }
     
     // MARK: Functions
-    func configureTableView() {
-        view.addSubview(tableView)
-        tableView.snp.makeConstraints {
-            $0.edges.equalTo(view.safeAreaLayoutGuide)
+    func addSubviews() {
+        view.addSubviews([topView, tableView])
+        topView.addSubview(horizontalStackView)
+        horizontalStackView.addArrangedSubviews([textField, addButton])
+    }
+    
+    func setConstraints() {
+        let safeArea = view.safeAreaLayoutGuide
+        
+        topView.snp.makeConstraints {
+            $0.top.equalTo(safeArea).offset(10)
+            $0.horizontalEdges.equalTo(safeArea).inset(20)
+            $0.height.equalTo(55)
         }
         
-        tableView.register(TodoTextFieldCell.self, forCellReuseIdentifier: TodoTextFieldCell.id)
-        tableView.register(TodoListCell.self, forCellReuseIdentifier: TodoListCell.id)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.backgroundColor = .systemGray6
+        horizontalStackView.snp.makeConstraints {
+            $0.edges.equalTo(topView.snp.edges).inset(10)
+        }
+        
+        addButton.snp.makeConstraints {
+            $0.width.equalTo(60)
+        }
+        
+        tableView.snp.makeConstraints {
+            $0.top.equalTo(horizontalStackView.snp.bottom).offset(10)
+            $0.bottom.horizontalEdges.equalTo(safeArea).inset(10)
+        }
     }
     
     func configureUI() {
         view.backgroundColor = .systemGray6
         navigationItem.title = "쇼핑"
+        
+        topView.backgroundColor = .white
+        topView.layer.cornerRadius = 10
+        
+        tableView.backgroundColor = .systemGray6
+        tableView.register(TodoListCell.self, forCellReuseIdentifier: TodoListCell.id)
+        
+        horizontalStackView.axis = .horizontal
+        horizontalStackView.spacing = 10
+        
+        addButton.addUI(title: "추가")
+        textField.placeholder = "구매하실 품목을 입력해주세요."
+    }
+    
+    func bind() {
+        todoList
+            .bind(to: tableView.rx.items(cellIdentifier: TodoListCell.id, cellType: TodoListCell.self)) { (row, element, cell) in
+                cell.titleLabel.text = element.title
+                cell.checkButton.isSelected = element.check
+                cell.starButton.isSelected = element.star
+                cell.checkButton.rx.tap
+                    .subscribe(with: self) { owner, _ in
+                        print("버튼을 클릭했어요")
+                    }
+                    .disposed(by: cell.disposeBag)
+            }
+            .disposed(by: disposeBag)
+        
+        tableView.rx.itemSelected
+            .bind(with: self) { owner, indexPath in
+                owner.navigationController?.pushViewController(DetailViewController(), animated: true)
+            }
+            .disposed(by: disposeBag)
     }
 }
-
-// MARK: UITableViewDataSource
-extension TodoListViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 55
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return sectionList.count
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch sectionList[section] {
-        case .textField:
-            return 1
-        case .items:
-            return todoList.count // 임시
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch sectionList[indexPath.section] {
-        case .textField:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoTextFieldCell.id, for: indexPath) as? TodoTextFieldCell else { return UITableViewCell() }
-            cell.addButton.rx.tap
-                .bind(with: self) { owner, _ in
-                    print("추가 버튼 클릭됨")
-                }
-                .disposed(by: disposeBag)
-            
-            return cell
-        case .items:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: TodoListCell.id, for: indexPath) as? TodoListCell else { return UITableViewCell() }
-            let item = todoList[indexPath.row]
-            cell.checkButton.isSelected = item.check
-            cell.titleLabel.text = item.title
-            cell.starButton.isSelected = item.star
-            return cell
-        }
-    }
-}
-
-// MARK: UITableViewDelegate
-extension TodoListViewController: UITableViewDelegate { }

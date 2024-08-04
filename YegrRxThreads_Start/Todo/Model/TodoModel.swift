@@ -8,7 +8,7 @@
 import Foundation
 
 struct TodoModel {
-    let check: Bool
+    var check: Bool
     let title: String
-    let star: Bool
+    var star: Bool
 }

@@ -7,11 +7,21 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 class TodoListCell: UITableViewCell, ViewRepresentable {
     let checkButton = UIButton(type: .system)
     let titleLabel = UILabel()
     let starButton = UIButton(type: .system)
+
+    var disposeBag = DisposeBag()
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        disposeBag = DisposeBag()
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -50,9 +60,9 @@ class TodoListCell: UITableViewCell, ViewRepresentable {
     
     func configureUI() {
         checkButton.setImage(
-            UIImage(systemName: "checkmark.square")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal), for: .normal)
+            UIImage(systemName: "checkmark.square")?.withTintColor(.black, renderingMode: .alwaysOriginal), for: .normal)
         checkButton.setImage(
-            UIImage(systemName: "checkmark.square.fill")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal), for: .selected)
+            UIImage(systemName: "checkmark.square.fill")?.withTintColor(.black, renderingMode: .alwaysOriginal), for: .selected)
         checkButton.setBackgroundColor(color: .white, forState: .selected)
         
         starButton.setImage(
