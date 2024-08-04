@@ -79,6 +79,8 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
         view.backgroundColor = .systemGray6
         navigationItem.title = "쇼핑"
         
+        navigationItem.rightBarButtonItem = rightBarButtonItem()
+        
         topView.backgroundColor = .white
         topView.layer.cornerRadius = 10
         
@@ -92,7 +94,23 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
         textField.placeholder = "구매하실 품목을 입력해주세요."
     }
     
+    func rightBarButtonItem() -> UIBarButtonItem {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+        button.tintColor = .black
+        
+        button.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.navigationController?.pushViewController(SearchViewController(), animated: true)
+            }
+            .disposed(by: disposeBag)
+        return UIBarButtonItem(customView: button)
+    }
+    
     func bind() {
+        navigationItem.rightBarButtonItem?.target = self
+        
+        
         todoList
             .bind(to: tableView.rx.items(cellIdentifier: TodoListCell.id, cellType: TodoListCell.self)) { (row, element, cell) in
                 cell.titleLabel.text = element.title
@@ -113,7 +131,7 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
         
         tableView.rx.itemSelected
             .bind(with: self) { owner, indexPath in
-                owner.navigationController?.pushViewController(DetailViewController(), animated: true)
+                //
             }
             .disposed(by: disposeBag)
         
