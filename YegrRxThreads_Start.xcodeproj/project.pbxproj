@@ -104,6 +104,7 @@
 				688A2D722C5CA42E00B88198 /* SignUp */,
 				688A2D792C5CB3A500B88198 /* SignUpOptional */,
 				688A2D802C5CC5F400B88198 /* Todo */,
+				688A2D962C5F46DF00B88198 /* Detail */,
 				688A2D592C5BD94800B88198 /* Info.plist */,
 			);
 			path = YegrRxThreads_Start;
@@ -161,28 +162,19 @@
 		688A2D802C5CC5F400B88198 /* Todo */ = {
 			isa = PBXGroup;
 			children = (
+				688A2D922C5E768100B88198 /* TodoModel.swift */,
+				688A2D8F2C5E67DC00B88198 /* TodoListCell.swift */,
 				688A2D812C5CC60600B88198 /* TodoListViewController.swift */,
-				688A2D942C5F418D00B88198 /* DetailViewController.swift */,
-				688A2D912C5E766100B88198 /* Model */,
-				688A2D8C2C5E67B500B88198 /* Cell */,
 			);
 			path = Todo;
 			sourceTree = "<group>";
 		};
-		688A2D8C2C5E67B500B88198 /* Cell */ = {
+		688A2D962C5F46DF00B88198 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				688A2D8F2C5E67DC00B88198 /* TodoListCell.swift */,
+				688A2D942C5F418D00B88198 /* DetailViewController.swift */,
 			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		688A2D912C5E766100B88198 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				688A2D922C5E768100B88198 /* TodoModel.swift */,
-			);
-			path = Model;
+			path = Detail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
