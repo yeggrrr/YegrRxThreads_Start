@@ -111,5 +111,15 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
                 owner.navigationController?.pushViewController(DetailViewController(), animated: true)
             }
             .disposed(by: disposeBag)
+        
+        addButton.rx.tap
+            .withLatestFrom(textField.rx.text.orEmpty) { void, text in
+                return text
+            }
+            .bind(with: self) { owner, value in
+                owner.todo.insert(TodoModel(check: false, title: value, star: false), at: 0)
+                owner.todoList.onNext(owner.todo)
+            }
+            .disposed(by: disposeBag)
     }
 }
