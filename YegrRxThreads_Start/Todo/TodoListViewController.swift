@@ -106,11 +106,19 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
                 cell.checkButton.rx.tap
                     .bind(with: self) { owner, _ in
                         cell.checkButton.isSelected.toggle()
+                        guard let title = cell.titleLabel.text else { return }
+                        let newTodo = TodoModel(check: cell.checkButton.isSelected, title: title, star: cell.starButton.isSelected)
+                        self.todo[row] = newTodo
+                        self.todoList.onNext(self.todo)
                     }
                     .disposed(by: cell.disposeBag)
                 cell.starButton.rx.tap
                     .bind(with: self) { owner, _ in
                         cell.starButton.isSelected.toggle()
+                        guard let title = cell.titleLabel.text else { return }
+                        let newTodo = TodoModel(check: cell.checkButton.isSelected, title: title, star: cell.starButton.isSelected)
+                        self.todo[row] = newTodo
+                        self.todoList.onNext(self.todo)
                     }
                     .disposed(by: cell.disposeBag)
             }
@@ -165,7 +173,7 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
                 let newTitle = firstTextField.text
             else { return }
             
-            let newTodo = TodoModel(check: false, title: newTitle, star: false)
+            let newTodo = TodoModel(check: oldTodo.check, title: newTitle, star: oldTodo.star)
             self.todo[row] = newTodo
             self.todoList.onNext(self.todo)
         }
