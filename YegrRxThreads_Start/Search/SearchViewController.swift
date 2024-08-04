@@ -60,5 +60,15 @@ final class SearchViewController: UIViewController, ViewRepresentable {
                 cell.titleLabel.text = element.title
             }
             .disposed(by: disposeBag)
+        
+        searchBar.rx.text.orEmpty
+            .debounce(.seconds(1), scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .bind(with: self) { owner, value in
+                let result = value.isEmpty ? owner.todo :
+                owner.todo.filter { $0.title.contains(value)}
+                owner.todoList.onNext(result)
+            }
+            .disposed(by: disposeBag)
     }
 }
