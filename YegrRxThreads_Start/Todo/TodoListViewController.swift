@@ -99,8 +99,13 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
                 cell.checkButton.isSelected = element.check
                 cell.starButton.isSelected = element.star
                 cell.checkButton.rx.tap
-                    .subscribe(with: self) { owner, _ in
-                        print("버튼을 클릭했어요")
+                    .bind(with: self) { owner, _ in
+                        cell.checkButton.isSelected.toggle()
+                    }
+                    .disposed(by: cell.disposeBag)
+                cell.starButton.rx.tap
+                    .bind(with: self) { owner, _ in
+                        cell.starButton.isSelected.toggle()
                     }
                     .disposed(by: cell.disposeBag)
             }
