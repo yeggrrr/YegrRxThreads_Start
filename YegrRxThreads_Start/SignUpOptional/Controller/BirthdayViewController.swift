@@ -164,6 +164,7 @@ final class BirthdayViewController: UIViewController, ViewRepresentable {
         }
         
         // nextButton
-        nextButton.setUI(title: "가입하기")
+        nextButton.setTitle("가입하기", for: .normal)
+        nextButton.setUI()
     }
 }

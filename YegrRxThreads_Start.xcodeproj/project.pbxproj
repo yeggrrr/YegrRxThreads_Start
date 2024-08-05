@@ -36,6 +36,7 @@
 		688A2DA22C60834300B88198 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2DA12C60834300B88198 /* SignInViewModel.swift */; };
 		688A2DA42C60879300B88198 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2DA32C60879300B88198 /* SignUpViewModel.swift */; };
 		688A2DA62C608D5700B88198 /* PasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2DA52C608D5700B88198 /* PasswordViewModel.swift */; };
+		688A2DAC2C609B2400B88198 /* PhoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2DAB2C609B2400B88198 /* PhoneViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,7 @@
 		688A2DA12C60834300B88198 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		688A2DA32C60879300B88198 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		688A2DA52C608D5700B88198 /* PasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewModel.swift; sourceTree = "<group>"; };
+		688A2DAB2C609B2400B88198 /* PhoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,10 +154,8 @@
 		688A2D722C5CA42E00B88198 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
-				688A2DA32C60879300B88198 /* SignUpViewModel.swift */,
-				688A2DA52C608D5700B88198 /* PasswordViewModel.swift */,
-				688A2D732C5CA44700B88198 /* SignUpViewController.swift */,
-				688A2D772C5CB05000B88198 /* PasswordViewController.swift */,
+				688A2DA72C609AE000B88198 /* ViewModel */,
+				688A2DA82C609AEE00B88198 /* Controller */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -163,9 +163,8 @@
 		688A2D792C5CB3A500B88198 /* SignUpOptional */ = {
 			isa = PBXGroup;
 			children = (
-				688A2D7A2C5CB3C400B88198 /* PhoneViewController.swift */,
-				688A2D7C2C5CB3CE00B88198 /* NicknameViewController.swift */,
-				688A2D7E2C5CB3DD00B88198 /* BirthdayViewController.swift */,
+				688A2DA92C609AFF00B88198 /* ViewModel */,
+				688A2DAA2C609B0900B88198 /* Controller */,
 			);
 			path = SignUpOptional;
 			sourceTree = "<group>";
@@ -187,6 +186,42 @@
 				688A2D992C5F94BF00B88198 /* SearchCell.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		688A2DA72C609AE000B88198 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				688A2DA32C60879300B88198 /* SignUpViewModel.swift */,
+				688A2DA52C608D5700B88198 /* PasswordViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		688A2DA82C609AEE00B88198 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				688A2D732C5CA44700B88198 /* SignUpViewController.swift */,
+				688A2D772C5CB05000B88198 /* PasswordViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		688A2DA92C609AFF00B88198 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				688A2DAB2C609B2400B88198 /* PhoneViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		688A2DAA2C609B0900B88198 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				688A2D7A2C5CB3C400B88198 /* PhoneViewController.swift */,
+				688A2D7C2C5CB3CE00B88198 /* NicknameViewController.swift */,
+				688A2D7E2C5CB3DD00B88198 /* BirthdayViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,6 +315,7 @@
 				688A2DA22C60834300B88198 /* SignInViewModel.swift in Sources */,
 				688A2D8B2C5CD4FC00B88198 /* UIViewController+.swift in Sources */,
 				688A2D7D2C5CB3CE00B88198 /* NicknameViewController.swift in Sources */,
+				688A2DAC2C609B2400B88198 /* PhoneViewModel.swift in Sources */,
 				688A2D9A2C5F94BF00B88198 /* SearchCell.swift in Sources */,
 				688A2D6D2C5CA20D00B88198 /* UITextField+.swift in Sources */,
 				688A2DA42C60879300B88198 /* SignUpViewModel.swift in Sources */,

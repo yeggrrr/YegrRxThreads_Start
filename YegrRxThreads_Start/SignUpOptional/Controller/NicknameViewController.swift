@@ -55,8 +55,9 @@ final class NicknameViewController: UIViewController, ViewRepresentable {
     
     func configureUI() {
         view.backgroundColor = .white
-        
-        nicknameTextField.setUI(placeholderText: "닉네임을 입력해주세요")
-        nextButton.setUI(title: "다음")
+        nicknameTextField.placeholder = "닉네임을 입력해주세요"
+        nicknameTextField.setUI()
+        nextButton.setTitle("다음", for: .normal)
+        nextButton.setUI()
     }
 }
