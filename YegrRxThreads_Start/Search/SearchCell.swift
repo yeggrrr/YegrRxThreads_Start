@@ -46,4 +46,9 @@ class SearchCell: UITableViewCell, ViewRepresentable {
     func configureUI() {
         titleLabel.textAlignment = .left
     }
+    
+    func configureCell(element: TodoModel) {
+        selectionStyle = .none
+        titleLabel.text = element.title
+    }
 }

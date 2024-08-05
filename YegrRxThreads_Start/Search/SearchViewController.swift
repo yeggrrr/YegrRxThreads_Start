@@ -46,26 +46,32 @@ final class SearchViewController: UIViewController, ViewRepresentable {
     func configureUI() {
         view.backgroundColor = .white
         navigationItem.title = "검색"
-        searchBar.placeholder = "검색한 품목을 입력해주세요"
-        
         tableView.register(SearchCell.self, forCellReuseIdentifier: SearchCell.id)
     }
     
     func bind() {
+        let input = SearchViewModel.Input(searchText: searchBar.rx.text.orEmpty)
+        let output = viewModel.transform(input: input)
+        
         viewModel.todoList
             .bind(to: tableView.rx.items(cellIdentifier: SearchCell.id, cellType: SearchCell.self)) { (row, element, cell) in
-                cell.selectionStyle = .none
-                cell.titleLabel.text = element.title
+                cell.configureCell(element: element)
             }
             .disposed(by: disposeBag)
         
-        searchBar.rx.text.orEmpty
+        output.searchText
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .bind(with: self) { owner, value in
                 let result = value.isEmpty ? owner.viewModel.todo :
                 owner.viewModel.todo.filter { $0.title.contains(value)}
                 owner.viewModel.todoList.onNext(result)
+            }
+            .disposed(by: disposeBag)
+        
+        output.searchBarPlaceholder
+            .bind(with: self) { owner, value in
+                owner.searchBar.placeholder = value
             }
             .disposed(by: disposeBag)
     }
