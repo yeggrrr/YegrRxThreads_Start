@@ -99,29 +99,7 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
         
         viewModel.todoList
             .bind(to: tableView.rx.items(cellIdentifier: TodoListCell.id, cellType: TodoListCell.self)) { (row, element, cell) in
-                cell.selectionStyle = .none
-                cell.titleLabel.text = element.title
-                cell.checkButton.isSelected = element.check
-                cell.starButton.isSelected = element.star
-                
-                cell.checkButton.rx.tap
-                    .bind(with: self) { owner, _ in
-                        cell.checkButton.isSelected.toggle()
-                        guard let title = cell.titleLabel.text else { return }
-                        let newTodo = TodoModel(check: cell.checkButton.isSelected, title: title, star: cell.starButton.isSelected)
-                        owner.viewModel.todo[row] = newTodo
-                        owner.viewModel.todoList.onNext(owner.viewModel.todo)
-                    }
-                    .disposed(by: cell.disposeBag)
-                cell.starButton.rx.tap
-                    .bind(with: self) { owner, _ in
-                        cell.starButton.isSelected.toggle()
-                        guard let title = cell.titleLabel.text else { return }
-                        let newTodo = TodoModel(check: cell.checkButton.isSelected, title: title, star: cell.starButton.isSelected)
-                        owner.viewModel.todo[row] = newTodo
-                        owner.viewModel.todoList.onNext(owner.viewModel.todo)
-                    }
-                    .disposed(by: cell.disposeBag)
+                cell.configureCell(row: row, element: element, viewModel: self.viewModel)
             }
             .disposed(by: disposeBag)
         

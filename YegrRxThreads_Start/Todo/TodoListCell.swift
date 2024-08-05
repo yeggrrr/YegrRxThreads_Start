@@ -73,4 +73,31 @@ class TodoListCell: UITableViewCell, ViewRepresentable {
         starButton.setBackgroundColor(color: .white, forState: .normal)
         starButton.setBackgroundColor(color: .white, forState: .selected)
     }
+    
+    func configureCell(row: Int, element: TodoModel, viewModel: TodoViewModel) {
+        selectionStyle = .none
+        titleLabel.text = element.title
+        checkButton.isSelected = element.check
+        starButton.isSelected = element.star
+        
+        checkButton.rx.tap
+            .bind(with: self) { owner, _ in
+                self.checkButton.isSelected.toggle()
+                guard let title = self.titleLabel.text else { return }
+                let newTodo = TodoModel(check: self.checkButton.isSelected, title: title, star: self.starButton.isSelected)
+                viewModel.todo[row] = newTodo
+                viewModel.todoList.onNext(viewModel.todo)
+            }
+            .disposed(by: disposeBag)
+        
+        starButton.rx.tap
+            .bind(with: self) { owner, _ in
+                self.starButton.isSelected.toggle()
+                guard let title = self.titleLabel.text else { return }
+                let newTodo = TodoModel(check: self.checkButton.isSelected, title: title, star: self.starButton.isSelected)
+                viewModel.todo[row] = newTodo
+                viewModel.todoList.onNext(viewModel.todo)
+            }
+            .disposed(by: disposeBag)
+    }
 }
