@@ -10,8 +10,6 @@ import RxSwift
 import RxCocoa
 
 class SignInViewModel {
-    let disposeBag = DisposeBag()
-    
     struct Input {
         let tap: ControlEvent<Void>
     }
