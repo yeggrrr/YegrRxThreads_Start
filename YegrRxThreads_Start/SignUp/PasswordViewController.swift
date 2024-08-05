@@ -63,13 +63,13 @@ final class PasswordViewController: UIViewController, ViewRepresentable {
         
         output.passwordValidText
             .bind(with: self) { owner, value in
-                owner.passwordTextField.setUI(placeholderText: value)
+                owner.passwordTextField.placeholder = value
             }
             .disposed(by: disposeBag)
         
         output.nextButtonText
             .bind(with: self) { owner, value in
-                owner.nextButton.setUI(title: value)
+                owner.nextButton.setTitle(value, for: .normal)
             }
             .disposed(by: disposeBag)
     }
@@ -102,5 +102,7 @@ final class PasswordViewController: UIViewController, ViewRepresentable {
     
     func configureUI() {
         view.backgroundColor = .white
+        passwordTextField.setUI()
+        nextButton.setUI()
     }
 }
