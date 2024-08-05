@@ -14,7 +14,7 @@ final class PhoneViewController: UIViewController, ViewRepresentable {
     private let phoneTextField = UITextField()
     private let nextButton = UIButton()
     
-    private let initialNumberText = Observable.just("010")
+    private let viewModel = PhoneViewModel()
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -27,24 +27,38 @@ final class PhoneViewController: UIViewController, ViewRepresentable {
     }
     
     private func bind() {
-        nextButton.rx.tap
+        let input = PhoneViewModel.Input(nextButtonTap: nextButton.rx.tap,
+                                         textFieldValidText: phoneTextField.rx.text)
+        let output = viewModel.transform(input: input)
+        
+        output.nextButtonTap
             .bind(with: self) { owner, _ in
                 owner.navigationController?.pushViewController(NicknameViewController(), animated: true)
             }
             .disposed(by: disposeBag)
         
-        initialNumberText.bind(to: phoneTextField.rx.text)
+        viewModel.initialNumberText.bind(to: phoneTextField.rx.text)
             .disposed(by: disposeBag)
         
-        let validation = phoneTextField.rx.text.orEmpty
-            .map { $0.count >= 10 && Int($0) != nil }
-        
-        validation.bind(with: self) { owner, value in
+        output.validation
+            .bind(with: self) { owner, value in
             let color: UIColor = value ? .systemPink : .systemGray
             owner.nextButton.backgroundColor = color
             owner.nextButton.isEnabled = value
         }
         .disposed(by: disposeBag)
+        
+        output.textFieldPlaceholder
+            .bind(with: self) { owner, value in
+                owner.phoneTextField.placeholder = value
+            }
+            .disposed(by: disposeBag)
+        
+        output.nextButtonText
+            .bind(with: self) { owner, value in
+                owner.nextButton.setTitle(value, for: .normal)
+            }
+            .disposed(by: disposeBag)
     }
     
     func addSubviews() {
@@ -70,8 +84,8 @@ final class PhoneViewController: UIViewController, ViewRepresentable {
     func configureUI() {
         view.backgroundColor = .white
         
-        phoneTextField.setUI(placeholderText: "연락처를 입력해주세요")
+        phoneTextField.setUI()
         phoneTextField.keyboardType = .numberPad
-        nextButton.setUI(title: "다음")
+        nextButton.setUI()
     }
 }
