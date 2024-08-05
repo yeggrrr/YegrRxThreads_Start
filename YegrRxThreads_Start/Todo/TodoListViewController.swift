@@ -27,13 +27,7 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
     // MARK: Properties
     let sectionList: [SectionType] = [.textField, .items]
     
-    var todo: [TodoModel] = [
-        TodoModel(check: false, title: "임시값1", star: false),
-        TodoModel(check: false, title: "임시값2", star: false)
-    ]
-    lazy var todoList = BehaviorSubject(value: todo)
-    
-    private let viewModel = TodoViewModel()
+    let viewModel = TodoViewModel()
     let disposeBag = DisposeBag()
 
     // MARK: View Life Cycle
@@ -103,7 +97,7 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
         
         let output = viewModel.transform(input: input)
         
-        todoList
+        viewModel.todoList
             .bind(to: tableView.rx.items(cellIdentifier: TodoListCell.id, cellType: TodoListCell.self)) { (row, element, cell) in
                 cell.selectionStyle = .none
                 cell.titleLabel.text = element.title
@@ -115,8 +109,8 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
                         cell.checkButton.isSelected.toggle()
                         guard let title = cell.titleLabel.text else { return }
                         let newTodo = TodoModel(check: cell.checkButton.isSelected, title: title, star: cell.starButton.isSelected)
-                        self.todo[row] = newTodo
-                        self.todoList.onNext(self.todo)
+                        owner.viewModel.todo[row] = newTodo
+                        owner.viewModel.todoList.onNext(owner.viewModel.todo)
                     }
                     .disposed(by: cell.disposeBag)
                 cell.starButton.rx.tap
@@ -124,8 +118,8 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
                         cell.starButton.isSelected.toggle()
                         guard let title = cell.titleLabel.text else { return }
                         let newTodo = TodoModel(check: cell.checkButton.isSelected, title: title, star: cell.starButton.isSelected)
-                        self.todo[row] = newTodo
-                        self.todoList.onNext(self.todo)
+                        owner.viewModel.todo[row] = newTodo
+                        owner.viewModel.todoList.onNext(owner.viewModel.todo)
                     }
                     .disposed(by: cell.disposeBag)
             }
@@ -139,8 +133,8 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
         
         output.tableViewItemDeleted
             .bind(with: self) { owner, indexPath in
-                owner.todo.remove(at: indexPath.row)
-                owner.todoList.onNext(owner.todo)
+                owner.viewModel.todo.remove(at: indexPath.row)
+                owner.viewModel.todoList.onNext(owner.viewModel.todo)
             }
             .disposed(by: disposeBag)
         
@@ -149,8 +143,8 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
                 return text
             }
             .bind(with: self) { owner, value in
-                owner.todo.insert(TodoModel(check: false, title: value, star: false), at: 0)
-                owner.todoList.onNext(owner.todo)
+                self.viewModel.todo.insert(TodoModel(check: false, title: value, star: false), at: 0)
+                self.viewModel.todoList.onNext(owner.viewModel.todo)
                 owner.textField.text = ""
             }
             .disposed(by: disposeBag)
@@ -164,7 +158,7 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
         button.rx.tap
             .bind(with: self) { owner, _ in
                 let vc = SearchViewController()
-                vc.todo = self.todo
+                vc.viewModel.todo = self.viewModel.todo
                 owner.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: disposeBag)
@@ -172,7 +166,7 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
     }
     
     func editAction(row: Int) {
-        let oldTodo = todo[row]
+        let oldTodo = viewModel.todo[row]
         
         let alert = UIAlertController(title: "리스트 수정하기", message: "내용을 입력하세요.", preferredStyle: .alert)
         let cancelButton = UIAlertAction(title: "취소", style: .cancel, handler: nil)
@@ -183,8 +177,8 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
             else { return }
             
             let newTodo = TodoModel(check: oldTodo.check, title: newTitle, star: oldTodo.star)
-            self.todo[row] = newTodo
-            self.todoList.onNext(self.todo)
+            self.viewModel.todo[row] = newTodo
+            self.viewModel.todoList.onNext(self.viewModel.todo)
         }
         
         alert.addAction(cancelButton)

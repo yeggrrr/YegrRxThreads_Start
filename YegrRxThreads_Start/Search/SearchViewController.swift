@@ -14,9 +14,7 @@ final class SearchViewController: UIViewController, ViewRepresentable {
     let searchBar = UISearchBar()
     let tableView = UITableView(frame: .zero, style: .insetGrouped)
     
-    var todo: [TodoModel] = []
-    lazy var todoList = BehaviorSubject(value: todo)
-    
+    let viewModel = SearchViewModel()
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -54,7 +52,7 @@ final class SearchViewController: UIViewController, ViewRepresentable {
     }
     
     func bind() {
-        todoList
+        viewModel.todoList
             .bind(to: tableView.rx.items(cellIdentifier: SearchCell.id, cellType: SearchCell.self)) { (row, element, cell) in
                 cell.selectionStyle = .none
                 cell.titleLabel.text = element.title
@@ -65,9 +63,9 @@ final class SearchViewController: UIViewController, ViewRepresentable {
             .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .bind(with: self) { owner, value in
-                let result = value.isEmpty ? owner.todo :
-                owner.todo.filter { $0.title.contains(value)}
-                owner.todoList.onNext(result)
+                let result = value.isEmpty ? owner.viewModel.todo :
+                owner.viewModel.todo.filter { $0.title.contains(value)}
+                owner.viewModel.todoList.onNext(result)
             }
             .disposed(by: disposeBag)
     }

@@ -9,7 +9,14 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class TodoViewModel {        
+final class TodoViewModel {   
+    var todo: [TodoModel] = [
+        TodoModel(check: false, title: "임시값1", star: false),
+        TodoModel(check: false, title: "임시값2", star: false)
+    ]
+    
+    lazy var todoList = BehaviorSubject(value: todo)
+    
     struct Input {
         let addButtonTap: ControlEvent<Void>
         let tableViewItemSelected: ControlEvent<IndexPath>

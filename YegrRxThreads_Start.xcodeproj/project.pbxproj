@@ -40,6 +40,7 @@
 		688A2DAE2C609E3000B88198 /* NicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2DAD2C609E3000B88198 /* NicknameViewModel.swift */; };
 		688A2DB02C609FBB00B88198 /* BirthdayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2DAF2C609FBB00B88198 /* BirthdayViewModel.swift */; };
 		688A2DB32C60A3F200B88198 /* TodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2DB22C60A3F200B88198 /* TodoViewModel.swift */; };
+		688A2DBC2C60DB4400B88198 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2DBB2C60DB4400B88198 /* SearchViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 		688A2DAD2C609E3000B88198 /* NicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewModel.swift; sourceTree = "<group>"; };
 		688A2DAF2C609FBB00B88198 /* BirthdayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayViewModel.swift; sourceTree = "<group>"; };
 		688A2DB22C60A3F200B88198 /* TodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewModel.swift; sourceTree = "<group>"; };
+		688A2DBB2C60DB4400B88198 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,8 +191,9 @@
 		688A2D962C5F46DF00B88198 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				688A2D942C5F418D00B88198 /* SearchViewController.swift */,
+				688A2DBB2C60DB4400B88198 /* SearchViewModel.swift */,
 				688A2D992C5F94BF00B88198 /* SearchCell.swift */,
+				688A2D942C5F418D00B88198 /* SearchViewController.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				688A2D9A2C5F94BF00B88198 /* SearchCell.swift in Sources */,
 				688A2D6D2C5CA20D00B88198 /* UITextField+.swift in Sources */,
 				688A2DA42C60879300B88198 /* SignUpViewModel.swift in Sources */,
+				688A2DBC2C60DB4400B88198 /* SearchViewModel.swift in Sources */,
 				688A2D6B2C5CA1E400B88198 /* ViewRepresentable.swift in Sources */,
 				688A2D822C5CC60600B88198 /* TodoListViewController.swift in Sources */,
 				688A2D932C5E768100B88198 /* TodoModel.swift in Sources */,
