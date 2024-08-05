@@ -9,9 +9,9 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class NicknameViewModel {
-    let textFieldPlaceholder = Observable.just("닉네임을 입력해주세요")
-    let nextButtonText = Observable.just("다음")
+final class NicknameViewModel {
+    private let textFieldPlaceholder = Observable.just("닉네임을 입력해주세요")
+    private let nextButtonText = Observable.just("다음")
     
     struct Input {
         let nextButtonTap: ControlEvent<Void>

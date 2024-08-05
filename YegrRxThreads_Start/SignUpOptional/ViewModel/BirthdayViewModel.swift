@@ -9,11 +9,11 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class BirthdayViewModel {
+final class BirthdayViewModel {
     let validAgeText = Observable.just("만 17세 이상만 가입 가능합니다.")
-    let nextButtonText = Observable.just("가입하기")
+    private let nextButtonText = Observable.just("가입하기")
     
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     struct Input {
         let birthday: ControlProperty<Date>

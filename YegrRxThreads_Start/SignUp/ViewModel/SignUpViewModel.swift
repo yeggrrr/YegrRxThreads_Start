@@ -11,9 +11,9 @@ import RxCocoa
 
 final class SignUpViewModel {
     let emailData = BehaviorSubject(value: "yegr@yegr.com")
-    let emailPlaceholder = Observable.just("이메일을 입력해주세요")
-    let nextButtonText = Observable.just("다음")
-    let validationButtonText = Observable.just("중복확인")
+    private let emailPlaceholder = Observable.just("이메일을 입력해주세요")
+    private let nextButtonText = Observable.just("다음")
+    private let validationButtonText = Observable.just("중복확인")
     
     struct Input {
         let text: ControlProperty<String?>

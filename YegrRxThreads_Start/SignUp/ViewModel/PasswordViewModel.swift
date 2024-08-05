@@ -11,8 +11,8 @@ import RxCocoa
 
 final class PasswordViewModel {
     let descriptionText = Observable.just("8자 이상 입력해주세요")
-    let passwordValidText = Observable.just("비밀번호를 입력해주세요")
-    let nextButtonText = Observable.just("다음")
+    private let passwordValidText = Observable.just("비밀번호를 입력해주세요")
+    private let nextButtonText = Observable.just("다음")
     
     struct Input {
         let passwordText: ControlProperty<String?>
