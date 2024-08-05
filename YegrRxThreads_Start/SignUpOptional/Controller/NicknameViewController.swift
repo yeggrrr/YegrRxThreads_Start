@@ -14,6 +14,7 @@ final class NicknameViewController: UIViewController, ViewRepresentable {
     private let nicknameTextField = UITextField()
     private let nextButton = UIButton()
     
+    private let viewModel = NicknameViewModel()
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -26,9 +27,24 @@ final class NicknameViewController: UIViewController, ViewRepresentable {
     }
     
     private func bind() {
-        nextButton.rx.tap
+        let input = NicknameViewModel.Input(nextButtonTap: nextButton.rx.tap)
+        let output = viewModel.transform(input: input)
+        
+        output.nextButtonTap
             .bind(with: self) { owner, _ in
                 owner.navigationController?.pushViewController(BirthdayViewController(), animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        output.textFieldPlaceholder
+            .bind(with: self) { owner, value in
+                owner.nicknameTextField.placeholder = value
+            }
+            .disposed(by: disposeBag)
+        
+        output.nextButtonText
+            .bind(with: self) { owner, value in
+                owner.nextButton.setTitle(value, for: .normal)
             }
             .disposed(by: disposeBag)
     }
@@ -55,9 +71,7 @@ final class NicknameViewController: UIViewController, ViewRepresentable {
     
     func configureUI() {
         view.backgroundColor = .white
-        nicknameTextField.placeholder = "닉네임을 입력해주세요"
         nicknameTextField.setUI()
-        nextButton.setTitle("다음", for: .normal)
         nextButton.setUI()
     }
 }

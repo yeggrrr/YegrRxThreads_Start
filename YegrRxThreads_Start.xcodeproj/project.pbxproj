@@ -37,6 +37,8 @@
 		688A2DA42C60879300B88198 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2DA32C60879300B88198 /* SignUpViewModel.swift */; };
 		688A2DA62C608D5700B88198 /* PasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2DA52C608D5700B88198 /* PasswordViewModel.swift */; };
 		688A2DAC2C609B2400B88198 /* PhoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2DAB2C609B2400B88198 /* PhoneViewModel.swift */; };
+		688A2DAE2C609E3000B88198 /* NicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2DAD2C609E3000B88198 /* NicknameViewModel.swift */; };
+		688A2DB02C609FBB00B88198 /* BirthdayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2DAF2C609FBB00B88198 /* BirthdayViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +71,8 @@
 		688A2DA32C60879300B88198 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		688A2DA52C608D5700B88198 /* PasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewModel.swift; sourceTree = "<group>"; };
 		688A2DAB2C609B2400B88198 /* PhoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneViewModel.swift; sourceTree = "<group>"; };
+		688A2DAD2C609E3000B88198 /* NicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewModel.swift; sourceTree = "<group>"; };
+		688A2DAF2C609FBB00B88198 /* BirthdayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +214,8 @@
 			isa = PBXGroup;
 			children = (
 				688A2DAB2C609B2400B88198 /* PhoneViewModel.swift */,
+				688A2DAD2C609E3000B88198 /* NicknameViewModel.swift */,
+				688A2DAF2C609FBB00B88198 /* BirthdayViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -315,6 +321,7 @@
 				688A2DA22C60834300B88198 /* SignInViewModel.swift in Sources */,
 				688A2D8B2C5CD4FC00B88198 /* UIViewController+.swift in Sources */,
 				688A2D7D2C5CB3CE00B88198 /* NicknameViewController.swift in Sources */,
+				688A2DAE2C609E3000B88198 /* NicknameViewModel.swift in Sources */,
 				688A2DAC2C609B2400B88198 /* PhoneViewModel.swift in Sources */,
 				688A2D9A2C5F94BF00B88198 /* SearchCell.swift in Sources */,
 				688A2D6D2C5CA20D00B88198 /* UITextField+.swift in Sources */,
@@ -326,6 +333,7 @@
 				688A2D872C5CC76C00B88198 /* UIStackView+.swift in Sources */,
 				688A2D6F2C5CA2EC00B88198 /* View+.swift in Sources */,
 				688A2D7B2C5CB3C400B88198 /* PhoneViewController.swift in Sources */,
+				688A2DB02C609FBB00B88198 /* BirthdayViewModel.swift in Sources */,
 				688A2D4E2C5BD94700B88198 /* SceneDelegate.swift in Sources */,
 				688A2D762C5CAB2100B88198 /* ReusableProtocol.swift in Sources */,
 			);

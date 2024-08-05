@@ -19,14 +19,9 @@ final class BirthdayViewController: UIViewController, ViewRepresentable {
     let dayLabel = UILabel()
     let nextButton = UIButton()
     
-    let year = BehaviorRelay(value: 2024)
-    let month = BehaviorRelay(value: 8)
-    let day = BehaviorRelay(value: 1)
-    
     var differenceDay = BehaviorSubject(value: 0)
     
-    let validAgeText = Observable.just("만 17세 이상만 가입 가능합니다.")
-    
+    let viewModel = BirthdayViewModel()
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -39,45 +34,47 @@ final class BirthdayViewController: UIViewController, ViewRepresentable {
     }
     
     func bind() {
-        birthDayPicker.rx.date.bind(with: self) { owner, date in
-            let component = Calendar.current.dateComponents([.day, .month, .year], from: date)
-            owner.year.accept(component.year ?? 0)
-            owner.month.accept(component.month ?? 0)
-            owner.day.accept(component.day ?? 0)
-        }
-        .disposed(by: disposeBag)
+        let input = BirthdayViewModel.Input(birthday: birthDayPicker.rx.date,
+                                            nextButtonTap: nextButton.rx.tap)
+        let output = viewModel.transform(input: input)
+        
+        viewModel.validAgeText.bind(to: infoLabel.rx.text)
+            .disposed(by: disposeBag)
   
-        year.map { "\($0)년" }
+        output.year.map { "\($0)년" }
             .bind(to: yearLabel.rx.text)
             .disposed(by: disposeBag)
         
-        month.map { "\($0)월" }
+        output.month.map { "\($0)월" }
             .bind(to: monthLabel.rx.text)
             .disposed(by: disposeBag)
         
-        day.map { "\($0)일 "}
+        output.day.map { "\($0)일 "}
             .bind(to: dayLabel.rx.text)
             .disposed(by: disposeBag)
         
-        validAgeText.bind(to: infoLabel.rx.text)
-            .disposed(by: disposeBag)
-        
-        year.bind { year in
-            self.changeText(year: year, month: self.month.value, day: self.day.value)
+        output.year.bind { year in
+            self.changeText(year: year, month: output.month.value, day: output.day.value)
         }
         .disposed(by: disposeBag)
         
-        month.bind { month in
-            self.changeText(year: self.year.value, month: month, day: self.day.value)
+        output.month.bind { month in
+            self.changeText(year: output.year.value, month: month, day: output.day.value)
         }
         .disposed(by: disposeBag)
 
-        day.bind { day in
-            self.changeText(year: self.year.value, month: self.month.value, day: day)
+        output.day.bind { day in
+            self.changeText(year: output.year.value, month: output.month.value, day: day)
         }
         .disposed(by: disposeBag)
         
-        nextButton.rx.tap
+        output.nextButtonText
+            .bind(with: self) { owner, value in
+                owner.nextButton.setTitle(value, for: .normal)
+            }
+            .disposed(by: disposeBag)
+        
+        output.nextButtonTap
             .bind(with: self) { owner, _ in
                 owner.showAlert(title: "가입이 완료되었습니다!", okText: "확인") {
                     owner.navigationController?.pushViewController(TodoListViewController(), animated: true)
@@ -150,21 +147,14 @@ final class BirthdayViewController: UIViewController, ViewRepresentable {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         navigationItem.backBarButtonItem?.tintColor = .black
         
-        // birthDayPicker
         birthDayPicker.setUI()
-        
-        // containerStackView
         containerStackView.setUI()
+        nextButton.setUI()
         
-        // labels
         [yearLabel, monthLabel, dayLabel].forEach {
             $0.textAlignment = .center
             $0.textColor = .black
             $0.font = .systemFont(ofSize: 18, weight: .regular)
         }
-        
-        // nextButton
-        nextButton.setTitle("가입하기", for: .normal)
-        nextButton.setUI()
     }
 }
