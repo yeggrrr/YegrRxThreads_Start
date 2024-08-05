@@ -16,6 +16,7 @@ final class SignInViewController: UIViewController, ViewRepresentable {
     private let signInButton = UIButton()
     private let signUpButton = UIButton()
     
+    let viewModel = SignInViewModel()
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -28,7 +29,10 @@ final class SignInViewController: UIViewController, ViewRepresentable {
     }
     
     private func bind() {
-        signUpButton.rx.tap
+        let input = SignInViewModel.Input(tap: signUpButton.rx.tap)
+        let output = viewModel.transform(input: input)
+        
+        output.tap
             .bind(with: self) { owner, _ in
                 owner.navigationController?.pushViewController(SignUpViewController(), animated: true)
             }
