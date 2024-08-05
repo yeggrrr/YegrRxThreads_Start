@@ -26,12 +26,14 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
     
     // MARK: Properties
     let sectionList: [SectionType] = [.textField, .items]
+    
     var todo: [TodoModel] = [
         TodoModel(check: false, title: "임시값1", star: false),
         TodoModel(check: false, title: "임시값2", star: false)
     ]
     lazy var todoList = BehaviorSubject(value: todo)
     
+    private let viewModel = TodoViewModel()
     let disposeBag = DisposeBag()
 
     // MARK: View Life Cycle
@@ -94,7 +96,12 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
     }
     
     func bind() {
-        navigationItem.rightBarButtonItem?.target = self
+        let input = TodoViewModel.Input(addButtonTap: addButton.rx.tap,
+                                        tableViewItemSelected: tableView.rx.itemSelected,
+                                        tableViewItemDeleted: tableView.rx.itemDeleted
+        )
+        
+        let output = viewModel.transform(input: input)
         
         todoList
             .bind(to: tableView.rx.items(cellIdentifier: TodoListCell.id, cellType: TodoListCell.self)) { (row, element, cell) in
@@ -102,6 +109,7 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
                 cell.titleLabel.text = element.title
                 cell.checkButton.isSelected = element.check
                 cell.starButton.isSelected = element.star
+                
                 cell.checkButton.rx.tap
                     .bind(with: self) { owner, _ in
                         cell.checkButton.isSelected.toggle()
@@ -123,20 +131,20 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
             }
             .disposed(by: disposeBag)
         
-        tableView.rx.itemSelected
+        output.tableViewItemSelected
             .bind(with: self) { owner, indexPath in
                 self.editAction(row: indexPath.row)
             }
             .disposed(by: disposeBag)
         
-        tableView.rx.itemDeleted
+        output.tableViewItemDeleted
             .bind(with: self) { owner, indexPath in
                 owner.todo.remove(at: indexPath.row)
                 owner.todoList.onNext(owner.todo)
             }
             .disposed(by: disposeBag)
         
-        addButton.rx.tap
+        output.addButtonTap
             .withLatestFrom(textField.rx.text.orEmpty) { void, text in
                 return text
             }

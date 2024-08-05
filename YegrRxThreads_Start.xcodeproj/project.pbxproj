@@ -39,6 +39,7 @@
 		688A2DAC2C609B2400B88198 /* PhoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2DAB2C609B2400B88198 /* PhoneViewModel.swift */; };
 		688A2DAE2C609E3000B88198 /* NicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2DAD2C609E3000B88198 /* NicknameViewModel.swift */; };
 		688A2DB02C609FBB00B88198 /* BirthdayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2DAF2C609FBB00B88198 /* BirthdayViewModel.swift */; };
+		688A2DB32C60A3F200B88198 /* TodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2DB22C60A3F200B88198 /* TodoViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,7 @@
 		688A2DAB2C609B2400B88198 /* PhoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneViewModel.swift; sourceTree = "<group>"; };
 		688A2DAD2C609E3000B88198 /* NicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewModel.swift; sourceTree = "<group>"; };
 		688A2DAF2C609FBB00B88198 /* BirthdayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayViewModel.swift; sourceTree = "<group>"; };
+		688A2DB22C60A3F200B88198 /* TodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +178,7 @@
 		688A2D802C5CC5F400B88198 /* Todo */ = {
 			isa = PBXGroup;
 			children = (
+				688A2DB22C60A3F200B88198 /* TodoViewModel.swift */,
 				688A2D922C5E768100B88198 /* TodoModel.swift */,
 				688A2D8F2C5E67DC00B88198 /* TodoListCell.swift */,
 				688A2D812C5CC60600B88198 /* TodoListViewController.swift */,
@@ -321,6 +324,7 @@
 				688A2DA22C60834300B88198 /* SignInViewModel.swift in Sources */,
 				688A2D8B2C5CD4FC00B88198 /* UIViewController+.swift in Sources */,
 				688A2D7D2C5CB3CE00B88198 /* NicknameViewController.swift in Sources */,
+				688A2DB32C60A3F200B88198 /* TodoViewModel.swift in Sources */,
 				688A2DAE2C609E3000B88198 /* NicknameViewModel.swift in Sources */,
 				688A2DAC2C609B2400B88198 /* PhoneViewModel.swift in Sources */,
 				688A2D9A2C5F94BF00B88198 /* SearchCell.swift in Sources */,
