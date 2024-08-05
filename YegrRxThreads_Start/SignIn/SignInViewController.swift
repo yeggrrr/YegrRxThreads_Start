@@ -37,6 +37,30 @@ final class SignInViewController: UIViewController, ViewRepresentable {
                 owner.navigationController?.pushViewController(SignUpViewController(), animated: true)
             }
             .disposed(by: disposeBag)
+        
+        output.emailPlaceholder
+            .bind(with: self) { owner, value in
+                owner.emailTextField.placeholder = value
+            }
+            .disposed(by: disposeBag)
+        
+        output.passwordPlaceholder
+            .bind(with: self) { owner, value in
+                owner.passwordTextField.placeholder = value
+            }
+            .disposed(by: disposeBag)
+        
+        output.signInButtonText
+            .bind(with: self) { owner, value in
+                owner.signInButton.setTitle(value, for: .normal)
+            }
+            .disposed(by: disposeBag)
+        
+        output.signUpButtonText
+            .bind(with: self) { owner, value in
+                owner.signUpButton.setTitle(value, for: .normal)
+            }
+            .disposed(by: disposeBag)
     }
     
     func addSubviews() {
@@ -73,10 +97,10 @@ final class SignInViewController: UIViewController, ViewRepresentable {
     
     func configureUI() {
         view.backgroundColor = .white
-        emailTextField.setUI(placeholderText: "이메일을 입력해주세요")
-        passwordTextField.setUI(placeholderText: "비밀번호를 입력해주세요")
-        signInButton.setUI(title: "로그인")
-        signUpButton.setTitle("회원이 아니십니까?", for: .normal)
+        emailTextField.setUI()
+        passwordTextField.setUI()
+        signInButton.setUI()
+        signInButton.backgroundColor = .systemGray
         signUpButton.setTitleColor(.black, for: .normal)
     }
 }

@@ -65,10 +65,27 @@ final class SignUpViewController: UIViewController, ViewRepresentable {
         }
         .disposed(by: disposeBag)
         
-        // button
+        output.emailPlaceholder
+            .bind(with: self) { owner, value in
+                owner.emailTextField.placeholder = value
+            }
+            .disposed(by: disposeBag)
+        
+        output.validationButtonText
+            .bind(with: self) { owner, value in
+                owner.validationButton.setTitle(value, for: .normal)
+            }
+            .disposed(by: disposeBag)
+        
         output.validationTap
             .bind(with: self) { owner, _ in
                 owner.viewModel.emailData.onNext("sesac@sesac.com")
+            }
+            .disposed(by: disposeBag)
+        
+        output.nextButtonText
+            .bind(with: self) { owner, value in
+                owner.nextButton.setTitle(value, for: .normal)
             }
             .disposed(by: disposeBag)
         
@@ -110,10 +127,8 @@ final class SignUpViewController: UIViewController, ViewRepresentable {
     func configureUI() {
         view.backgroundColor = .white
         
-        emailTextField.setUI(placeholderText: "이메일을 입력해주세요")
-        nextButton.setUI(title: "다음")
-        
-        validationButton.setTitle("중복확인", for: .normal)
+        emailTextField.setUI()
+        nextButton.setUI()
         validationButton.setTitleColor(.black, for: .normal)
         validationButton.layer.borderWidth = 1
         validationButton.layer.borderColor = UIColor.black.cgColor

@@ -8,9 +8,7 @@
 import UIKit
 
 extension UITextField {
-    func setUI(placeholderText: String) {
-        textColor = .black
-        placeholder = placeholderText
+    func setUI() {
         textAlignment = .center
         borderStyle = .none
         layer.cornerRadius = 10

@@ -8,8 +8,7 @@
 import UIKit
 
 extension UIButton {
-    func setUI(title: String) {
-        setTitle(title, for: .normal)
+    func setUI() {
         setTitleColor(.white, for: .normal)
         backgroundColor = .systemGray
         layer.cornerRadius = 10
