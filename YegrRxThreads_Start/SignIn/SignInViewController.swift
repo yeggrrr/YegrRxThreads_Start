@@ -16,7 +16,7 @@ final class SignInViewController: UIViewController, ViewRepresentable {
     private let signInButton = UIButton()
     private let signUpButton = UIButton()
     
-    let viewModel = SignInViewModel()
+    private let viewModel = SignInViewModel()
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {

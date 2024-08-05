@@ -18,10 +18,10 @@ final class SignUpViewController: UIViewController, ViewRepresentable {
     private let emailTextField = UITextField()
     private let validationButton = UIButton()
     private let nextButton = UIButton()
-    
-    private let emailData = BehaviorSubject(value: "yegr@yegr.com")
+
     private let basicColor = Observable.just(UIColor.systemGreen)
     
+    private let viewModel = SignUpViewModel()
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -34,7 +34,11 @@ final class SignUpViewController: UIViewController, ViewRepresentable {
     }
     
     private func bind() {
-        // color
+        let input = SignUpViewModel.Input(text: emailTextField.rx.text,
+                                          nextButtonTap: nextButton.rx.tap,
+                                          validationTap: validationButton.rx.tap)
+        let output = viewModel.transform(input: input)
+        
         basicColor.bind(
             to:nextButton.rx.backgroundColor,
             emailTextField.rx.textColor,
@@ -45,19 +49,16 @@ final class SignUpViewController: UIViewController, ViewRepresentable {
             .bind(to: emailTextField.layer.rx.borderColor)
             .disposed(by: disposeBag)
         
-        // emailData
-        emailData
+        viewModel.emailData
             .bind(to: emailTextField.rx.text)
             .disposed(by: disposeBag)
         
-        // textField
-        let textFieldValid = emailTextField.rx.text.orEmpty
-            .map { $0.count >= 4 }
-        
-        textFieldValid.bind(to: nextButton.rx.isEnabled)
+        output.textFieldValid
+            .bind(to: nextButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        textFieldValid.bind(with: self) { owner, value in
+        output.textFieldValid
+            .bind(with: self) { owner, value in
             let color: UIColor = value ? .systemGreen : .systemRed
             owner.nextButton.backgroundColor = color
             owner.validationButton.isHidden = !value
@@ -65,13 +66,13 @@ final class SignUpViewController: UIViewController, ViewRepresentable {
         .disposed(by: disposeBag)
         
         // button
-        validationButton.rx.tap
+        output.validationTap
             .bind(with: self) { owner, _ in
-                owner.emailData.onNext("sesac@sesac.com")
+                owner.viewModel.emailData.onNext("sesac@sesac.com")
             }
             .disposed(by: disposeBag)
         
-        nextButton.rx.tap
+        output.nextButtonTap
             .bind(with: self) { owner, _ in
                 owner.navigationController?.pushViewController(PasswordViewController(), animated: true)
             }
