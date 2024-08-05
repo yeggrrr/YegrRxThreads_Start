@@ -15,8 +15,7 @@ final class PasswordViewController: UIViewController, ViewRepresentable {
     private let nextButton = UIButton()
     private let descriptionLabel = UILabel()
     
-    private let descriptionText = Observable.just("8자 이상 입력해주세요")
-    
+    private let viewModel = PasswordViewModel()
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -29,29 +28,48 @@ final class PasswordViewController: UIViewController, ViewRepresentable {
     }
     
     private func bind() {
-        descriptionText.bind(to: descriptionLabel.rx.text)
+        let input = PasswordViewModel.Input(passwordText: passwordTextField.rx.text,
+                                            nextButtonTap: nextButton.rx.tap
+        )
+        let output = viewModel.transform(input: input)
+        
+        viewModel.descriptionText
+            .bind(to: descriptionLabel.rx.text)
             .disposed(by: disposeBag)
-        
-        let validation = passwordTextField.rx.text.orEmpty
-            .map { $0.count >= 8 }
-        
-        validation.bind(with: self) { owner, value in
+
+        output.passwordValidation
+            .bind(with: self) { owner, value in
             owner.descriptionLabel.isHidden = value
         }
         .disposed(by: disposeBag)
         
-        validation.bind(to: nextButton.rx.isEnabled)
+        
+        output.passwordValidation
+            .bind(to: nextButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        validation.bind(with: self) { owner, value in
+        output.passwordValidation
+            .bind(with: self) { owner, value in
             let color: UIColor = value ? .systemPink : .systemGray
             owner.nextButton.backgroundColor = color
         }
         .disposed(by: disposeBag)
         
-        nextButton.rx.tap
+        output.nextButtonTap
             .bind(with: self) { owner, _ in
                 owner.navigationController?.pushViewController(PhoneViewController(), animated: true)
+            }
+            .disposed(by: disposeBag)
+        
+        output.passwordValidText
+            .bind(with: self) { owner, value in
+                owner.passwordTextField.setUI(placeholderText: value)
+            }
+            .disposed(by: disposeBag)
+        
+        output.nextButtonText
+            .bind(with: self) { owner, value in
+                owner.nextButton.setUI(title: value)
             }
             .disposed(by: disposeBag)
     }
@@ -84,8 +102,5 @@ final class PasswordViewController: UIViewController, ViewRepresentable {
     
     func configureUI() {
         view.backgroundColor = .white
-        
-        passwordTextField.setUI(placeholderText: "비밀번호를 입력해주세요")
-        nextButton.setUI(title: "다음")
     }
 }

@@ -11,7 +11,7 @@ extension UIButton {
     func setUI(title: String) {
         setTitle(title, for: .normal)
         setTitleColor(.white, for: .normal)
-        backgroundColor = .black
+        backgroundColor = .systemGray
         layer.cornerRadius = 10
     }
     
