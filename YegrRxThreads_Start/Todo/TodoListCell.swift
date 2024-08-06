@@ -11,9 +11,9 @@ import RxSwift
 import RxCocoa
 
 class TodoListCell: UITableViewCell, ViewRepresentable {
-    let checkButton = UIButton(type: .system)
-    let titleLabel = UILabel()
-    let starButton = UIButton(type: .system)
+    private let checkButton = UIButton(type: .system)
+    private let titleLabel = UILabel()
+    private let starButton = UIButton(type: .system)
 
     var disposeBag = DisposeBag()
     

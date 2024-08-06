@@ -11,18 +11,18 @@ import RxSwift
 import RxCocoa
 
 final class BirthdayViewController: UIViewController, ViewRepresentable {
-    let birthDayPicker = UIDatePicker()
-    let infoLabel = UILabel()
-    let containerStackView = UIStackView()
-    let yearLabel = UILabel()
-    let monthLabel = UILabel()
-    let dayLabel = UILabel()
-    let nextButton = UIButton()
+    private let birthDayPicker = UIDatePicker()
+    private let infoLabel = UILabel()
+    private let containerStackView = UIStackView()
+    private let yearLabel = UILabel()
+    private let monthLabel = UILabel()
+    private let dayLabel = UILabel()
+    private let nextButton = UIButton()
     
-    var differenceDay = BehaviorSubject(value: 0)
+    private var differenceDay = BehaviorSubject(value: 0)
     
-    let viewModel = BirthdayViewModel()
-    let disposeBag = DisposeBag()
+    private let viewModel = BirthdayViewModel()
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,7 +83,7 @@ final class BirthdayViewController: UIViewController, ViewRepresentable {
             .disposed(by: disposeBag)
     }
     
-    func changeText(year: Int, month: Int, day: Int) {
+    private func changeText(year: Int, month: Int, day: Int) {
         if getDifferenceDays(year: year, month: month, day: day) {
             infoLabel.rx.text
                 .onNext("가입이 가능한 나이입니다")
