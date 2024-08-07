@@ -22,6 +22,7 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
     private let horizontalStackView = UIStackView()
     private let textField = UITextField()
     private let addButton = UIButton()
+    private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewlayout())
     private let tableView = UITableView(frame: .zero, style: .insetGrouped)
     
     // MARK: Properties
@@ -42,7 +43,7 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
     
     // MARK: Functions
     func addSubviews() {
-        view.addSubviews([topView, tableView])
+        view.addSubviews([topView, collectionView, tableView])
         topView.addSubview(horizontalStackView)
         horizontalStackView.addArrangedSubviews([textField, addButton])
     }
@@ -64,8 +65,14 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
             $0.width.equalTo(60)
         }
         
+        collectionView.snp.makeConstraints {
+            $0.top.equalTo(topView.snp.bottom).offset(5)
+            $0.horizontalEdges.equalTo(safeArea).inset(10)
+            $0.height.equalTo(40)
+        }
+        
         tableView.snp.makeConstraints {
-            $0.top.equalTo(horizontalStackView.snp.bottom).offset(10)
+            $0.top.equalTo(collectionView.snp.bottom).offset(10)
             $0.bottom.horizontalEdges.equalTo(safeArea).inset(10)
         }
     }
@@ -81,6 +88,8 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
         
         tableView.backgroundColor = .systemGray6
         tableView.register(TodoListCell.self, forCellReuseIdentifier: TodoListCell.id)
+        
+        collectionView.register(RecommendCell.self, forCellWithReuseIdentifier: RecommendCell.id)
         
         horizontalStackView.axis = .horizontal
         horizontalStackView.spacing = 10
@@ -126,6 +135,12 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
                 owner.textField.text = ""
             }
             .disposed(by: disposeBag)
+        
+        output.recomendList
+            .bind(to: collectionView.rx.items(cellIdentifier: RecommendCell.id, cellType: RecommendCell.self)) { (row, element, cell) in
+                cell.titleLabel.text = element
+            }
+            .disposed(by: disposeBag)
     }
     
     private func rightBarButtonItem() -> UIBarButtonItem {
@@ -167,5 +182,13 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
         }
         
         self.present(alert, animated: true)
+    }
+    
+    static func collectionViewlayout() ->  UICollectionViewFlowLayout {
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 100, height: 30)
+        layout.scrollDirection = .horizontal
+        layout.minimumInteritemSpacing = 5
+        return layout
     }
 }
