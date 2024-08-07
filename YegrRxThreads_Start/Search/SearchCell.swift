@@ -10,10 +10,10 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class SearchCell: UITableViewCell, ViewRepresentable {
+final class SearchCell: UITableViewCell, ViewRepresentable {
     let titleLabel = UILabel()
 
-    var disposeBag = DisposeBag()
+    private var disposeBag = DisposeBag()
     
     override func prepareForReuse() {
         super.prepareForReuse()

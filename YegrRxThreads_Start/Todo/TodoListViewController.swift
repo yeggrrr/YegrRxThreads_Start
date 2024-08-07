@@ -90,6 +90,7 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
         tableView.register(TodoListCell.self, forCellReuseIdentifier: TodoListCell.id)
         
         collectionView.register(RecommendCell.self, forCellWithReuseIdentifier: RecommendCell.id)
+        collectionView.showsHorizontalScrollIndicator = false
         
         horizontalStackView.axis = .horizontal
         horizontalStackView.spacing = 10
@@ -193,7 +194,7 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
         self.present(alert, animated: true)
     }
     
-    static func collectionViewlayout() ->  UICollectionViewFlowLayout {
+    private static func collectionViewlayout() ->  UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 100, height: 30)
         layout.scrollDirection = .horizontal

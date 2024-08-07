@@ -11,11 +11,11 @@ import RxSwift
 import RxCocoa
 
 final class SearchViewController: UIViewController, ViewRepresentable {
-    let searchBar = UISearchBar()
-    let tableView = UITableView(frame: .zero, style: .insetGrouped)
+    private let searchBar = UISearchBar()
+    private let tableView = UITableView(frame: .zero, style: .insetGrouped)
     
     let viewModel = SearchViewModel()
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +49,7 @@ final class SearchViewController: UIViewController, ViewRepresentable {
         tableView.register(SearchCell.self, forCellReuseIdentifier: SearchCell.id)
     }
     
-    func bind() {
+    private func bind() {
         let input = SearchViewModel.Input(searchText: searchBar.rx.text.orEmpty)
         let output = viewModel.transform(input: input)
         

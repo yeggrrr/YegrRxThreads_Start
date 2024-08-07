@@ -10,12 +10,12 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class TodoListCell: UITableViewCell, ViewRepresentable {
+final class TodoListCell: UITableViewCell, ViewRepresentable {
     private let checkButton = UIButton(type: .system)
     private let titleLabel = UILabel()
     private let starButton = UIButton(type: .system)
 
-    var disposeBag = DisposeBag()
+    private var disposeBag = DisposeBag()
     
     override func prepareForReuse() {
         super.prepareForReuse()
