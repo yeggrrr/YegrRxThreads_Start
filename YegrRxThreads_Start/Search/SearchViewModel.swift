@@ -20,12 +20,14 @@ final class SearchViewModel {
     }
     
     struct Output {
+        let todoList: Observable<[TodoModel]>
         let searchText: ControlProperty<String>
         let searchBarPlaceholder: Observable<String>
     }
     
     func transform(input: Input) -> Output {
-        return Output(searchText: input.searchText,
+        return Output(todoList: todoList,
+                      searchText: input.searchText,
                       searchBarPlaceholder: searchBarPlaceholder)
     }
 }

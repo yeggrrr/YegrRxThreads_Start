@@ -24,6 +24,7 @@ final class TodoViewModel {
     }
     
     struct Output {
+        let todoList: Observable<[TodoModel]>
         let addButtonTap: ControlEvent<Void>
         let tableViewItemSelected: ControlEvent<IndexPath>
         let tableViewItemDeleted: ControlEvent<IndexPath>
@@ -31,7 +32,8 @@ final class TodoViewModel {
     
     func transform(input: Input) -> Output {
         
-        return Output(addButtonTap: input.addButtonTap,
+        return Output(todoList: todoList,
+                      addButtonTap: input.addButtonTap,
                       tableViewItemSelected: input.tableViewItemSelected,
                       tableViewItemDeleted: input.tableViewItemDeleted
         )

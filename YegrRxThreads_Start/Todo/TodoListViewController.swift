@@ -97,7 +97,7 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
         
         let output = viewModel.transform(input: input)
         
-        viewModel.todoList
+        output.todoList
             .bind(to: tableView.rx.items(cellIdentifier: TodoListCell.id, cellType: TodoListCell.self)) { (row, element, cell) in
                 cell.configureCell(row: row, element: element, viewModel: self.viewModel)
             }

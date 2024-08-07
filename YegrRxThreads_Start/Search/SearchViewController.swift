@@ -53,7 +53,7 @@ final class SearchViewController: UIViewController, ViewRepresentable {
         let input = SearchViewModel.Input(searchText: searchBar.rx.text.orEmpty)
         let output = viewModel.transform(input: input)
         
-        viewModel.todoList
+        output.todoList
             .bind(to: tableView.rx.items(cellIdentifier: SearchCell.id, cellType: SearchCell.self)) { (row, element, cell) in
                 cell.configureCell(element: element)
             }
