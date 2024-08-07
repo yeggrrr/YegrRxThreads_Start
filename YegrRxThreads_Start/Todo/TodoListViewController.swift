@@ -66,13 +66,13 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
         }
         
         collectionView.snp.makeConstraints {
-            $0.top.equalTo(topView.snp.bottom).offset(5)
+            $0.top.equalTo(topView.snp.bottom).offset(10)
             $0.horizontalEdges.equalTo(safeArea).inset(10)
             $0.height.equalTo(40)
         }
         
         tableView.snp.makeConstraints {
-            $0.top.equalTo(collectionView.snp.bottom).offset(10)
+            $0.top.equalTo(collectionView.snp.bottom)
             $0.bottom.horizontalEdges.equalTo(safeArea).inset(10)
         }
     }
@@ -106,6 +106,7 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
         
         let output = viewModel.transform(input: input)
         
+        // tableView
         output.todoList
             .bind(to: tableView.rx.items(cellIdentifier: TodoListCell.id, cellType: TodoListCell.self)) { (row, element, cell) in
                 cell.configureCell(row: row, element: element, viewModel: self.viewModel)
@@ -136,9 +137,17 @@ final class TodoListViewController: UIViewController, ViewRepresentable {
             }
             .disposed(by: disposeBag)
         
+        // collectionView
         output.recomendList
             .bind(to: collectionView.rx.items(cellIdentifier: RecommendCell.id, cellType: RecommendCell.self)) { (row, element, cell) in
                 cell.titleLabel.text = element
+            }
+            .disposed(by: disposeBag)
+        
+        collectionView.rx.modelSelected(String.self)
+            .subscribe(with: self) { owner, value in
+                owner.viewModel.todo.insert(TodoModel(check: false, title: value, star: false), at: 0)
+                owner.viewModel.todoList.onNext(owner.viewModel.todo)
             }
             .disposed(by: disposeBag)
     }
